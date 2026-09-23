@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lồng tiếng — Film Shadowing</title>
+<meta name="description" content="Màn luyện lồng tiếng phim: nghe lại từng câu, thu âm, chấm điểm tự động.">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<div id="appbar"></div>
+
+<main class="stage">
+  <div id="loadState" class="card" style="padding:22px">Đang nạp bài học…</div>
+
+  <div id="lessonRoot" hidden>
+    <!-- Đầu trang: tên bài + tiến độ -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card__body" style="padding:14px 18px">
+        <div class="row">
+          <div style="flex:1 1 260px">
+            <div class="row" style="gap:8px">
+              <h1 style="margin:0;font-size:1.25rem" id="lsTitle"></h1>
+              <span class="tag tag--gold" id="lsLevel"></span>
+              <span class="tag" id="lsSource"></span>
+            </div>
+            <div class="hint" id="lsSubtitle"></div>
+          </div>
+          <div style="flex:0 0 200px">
+            <div class="row" style="justify-content:space-between;font-size:.8rem">
+              <span class="hint">Tiến độ bài</span><b id="lsPercent">0%</b>
+            </div>
+            <div class="progress"><i id="lsBar" style="width:0%"></i></div>
+            <div class="hint" id="lsCounts" style="margin-top:4px"></div>
+          </div>
+          <button class="btn btn--sm" id="btnVocab">📘 Từ mới</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage__grid">
+      <!-- CỘT TRÁI: trình phát + phòng thu -->
+      <div class="stack">
+        <div>
+          <div class="player-box"><div class="player-box__frame" id="playerMount"></div></div>
+          <div class="transport">
+            <button class="btn btn--sm btn--primary" id="btnPlayLine" title="Cách phím: Space">▶ Nghe câu</button>
+            <button class="btn btn--sm" id="btnPrev" title="Cách phím: ←">⏮</button>
+            <button class="btn btn--sm" id="btnNext" title="Cách phím: →">⏭</button>
+            <button class="btn btn--sm" id="btnLoop" aria-pressed="false" title="Cách phím: L">🔁 Lặp</button>
+            <span class="seg" role="group" aria-label="Tốc độ phát">
+              <button data-rate="0.75">0.75x</button>
+              <button data-rate="0.9">0.9x</button>
+              <button data-rate="1" aria-pressed="true">1x</button>
+            </span>
+            <span class="transport__spacer"></span>
+            <span class="hint" id="lsClock">0:00</span>
+          </div>
+        </div>
+
+        <!-- Phòng thu -->
+        <div class="card">
+          <div class="card__head">
+            <h2 style="font-size:1rem">Phòng thu</h2>
+            <span class="tag" id="stepTag">Vòng 1 · Nghe</span>
+            <span style="margin-left:auto"></span>
+            <span class="seg" role="group" aria-label="Chế độ luyện">
+              <button data-step="listen" aria-pressed="true">Nghe</button>
+              <button data-step="chorus">Đọc chồng</button>
+              <button data-step="dub">Lồng tiếng</button>
+              <button data-step="test">Kiểm tra</button>
+            </span>
+          </div>
+          <div class="card__body stack">
+            <div id="asrNotice"></div>
+
+            <div class="banner" id="currentLineBox">
+              <b aria-hidden="true">🎬</b>
+              <div style="flex:1">
+                <div class="hint" id="curSpeaker">Chưa chọn câu</div>
+                <div id="curText" style="font-size:1.02rem">Bấm một câu ở bảng kịch bản bên phải để bắt đầu.</div>
+                <div class="hint" id="curVi"></div>
+              </div>
+            </div>
+
+            <div class="rec-bar">
+              <button class="btn btn--rec" id="btnRec" disabled>● Thu âm</button>
+              <span class="vu"><canvas id="vu" width="320" height="30"></canvas></span>
+              <span class="hint" id="recStatus">Chọn câu trước</span>
+            </div>
+
+            <div id="partialBox" class="hint" hidden></div>
+
+            <div id="playbackBox" hidden class="stack stack--sm">
+              <div class="row">
+                <span class="hint">Bản thu của bạn</span>
+                <button class="btn btn--sm btn--ghost" id="btnCompare">🔀 Nghe so sánh</button>
+                <button class="btn btn--sm btn--ghost" id="btnRetry">↻ Thu lại</button>
+              </div>
+              <audio id="myAudio" controls></audio>
+            </div>
+
+            <div id="scoreBox" hidden class="card" style="box-shadow:none">
+              <div class="card__body" id="scoreBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CỘT PHẢI: kịch bản / từ vựng / nhắc cụm trọng tâm -->
+      <div class="stack">
+        <div class="card">
+          <div class="tabs" role="tablist">
+            <button role="tab" aria-selected="true" data-tab="script">Kịch bản</button>
+            <button role="tab" aria-selected="false" data-tab="vocab">Từ vựng</button>
+            <button role="tab" aria-selected="false" data-tab="notes">Ghi chú</button>
+          </div>
+          <div class="card__head" style="border-bottom:1px solid var(--line);padding:9px 12px">
+            <label class="row" style="margin:0;font-weight:500;font-size:.82rem;gap:6px">
+              <input type="checkbox" id="chkHide" style="width:auto"> Ẩn tiếng Anh
+            </label>
+            <label class="row" style="margin:0;font-weight:500;font-size:.82rem;gap:6px">
+              <input type="checkbox" id="chkVi" checked style="width:auto"> Hiện tiếng Việt
+            </label>
+          </div>
+          <div class="card__body card__body--flush">
+            <div id="tabScript"></div>
+            <div id="tabVocab" hidden style="padding:14px"></div>
+            <div id="tabNotes" hidden style="padding:14px"></div>
+          </div>
+        </div>
+
+        <div class="card" id="cueCard" hidden>
+          <div class="card__head" style="padding:11px 14px">
+            <h3 style="font-size:.92rem;margin:0">Cụm trọng tâm của câu này</h3>
+          </div>
+          <div class="card__body" id="cueBox" style="padding:14px"></div>
+        </div>
+
+        <div class="card">
+          <div class="card__body" style="padding:14px">
+            <div class="hint" style="margin-bottom:8px">Cách phím</div>
+            <table class="tbl" style="font-size:.8rem">
+              <tr><td><kbd>Space</kbd></td><td>Nghe lại câu đang chọn</td></tr>
+              <tr><td><kbd>R</kbd></td><td>Bắt đầu / dừng thu</td></tr>
+              <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Câu trước / câu sau</td></tr>
+              <tr><td><kbd>L</kbd></td><td>Bật tắt lặp câu</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="wrap" style="padding:28px 16px;color:var(--ink-faint);font-size:.82rem">
+  <p id="rightsNote"></p>
+</footer>
+
+<script type="module" src="assets/js/pages/lesson.js"></script>
+</body>
+</html>

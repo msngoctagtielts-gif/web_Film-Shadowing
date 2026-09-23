@@ -1,0 +1,12 @@
+{
+  "name": "film-shadowing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nền tảng học tiếng Anh qua lồng tiếng phim (film shadowing) — Ms.Ngoc Elite English",
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 4173",
+    "test": "node tests/run.mjs"
+  },
+  "license": "UNLICENSED"
+}

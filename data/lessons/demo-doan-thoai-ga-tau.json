@@ -1,0 +1,185 @@
+{
+  "id": "demo-doan-thoai-ga-tau",
+  "courseId": "khoi-dong",
+  "title": "Tập 1 — Chuyến tàu cuối ngày",
+  "level": "A2–B1",
+  "episodeLabel": "Tập 1",
+  "summary": "Hai người lạ bị mắc lại ở ga khi chuyến tàu cuối bị hoãn. Luyện cách xin lỗi, hỏi thông tin và hẹn gặp lại.",
+  "notes": "Kịch bản gốc do Ms.Ngọc Elite English viết riêng cho bài mẫu này, đọc bằng giọng máy của trình duyệt. Học viên có thể luyện trọn bài khi không có mạng và không vướng bản quyền tư liệu.",
+  "source": {
+    "type": "tts",
+    "voiceLang": "en-US"
+  },
+  "scoring": { "profile": "starter", "passMark": 70 },
+  "roles": [
+    { "id": "MAI", "label": "Mai — nhân viên văn phòng, đang về muộn" },
+    { "id": "SAM", "label": "Sam — khách du lịch, lần đầu tới thành phố" }
+  ],
+  "vocab": [
+    {
+      "id": "v1", "term": "delayed", "ipa": "/dɪˈleɪd/", "pos": "adj",
+      "meaningVi": "bị hoãn, bị trễ giờ",
+      "definitionEn": "made to happen later than planned",
+      "example": "The last train is delayed by thirty minutes.",
+      "image": { "kind": "builtin", "key": "clock" },
+      "lineIds": ["l2"]
+    },
+    {
+      "id": "v2", "term": "platform", "ipa": "/ˈplætfɔːrm/", "pos": "n",
+      "meaningVi": "sân ga (chỗ đứng đợi tàu)",
+      "definitionEn": "the place beside the track where you wait for a train",
+      "example": "Your train leaves from platform four.",
+      "image": { "kind": "builtin", "key": "train" },
+      "lineIds": ["l4"]
+    },
+    {
+      "id": "v3", "term": "hold on", "ipa": "/həʊld ɒn/", "pos": "phr v",
+      "meaningVi": "chờ một chút",
+      "definitionEn": "wait for a short moment",
+      "example": "Hold on, let me check my phone.",
+      "image": { "kind": "builtin", "key": "phone" },
+      "lineIds": ["l6"]
+    },
+    {
+      "id": "v4", "term": "in a hurry", "ipa": "/ɪn ə ˈhʌri/", "pos": "phr",
+      "meaningVi": "đang gấp, đang vội",
+      "definitionEn": "needing to do something quickly",
+      "example": "Sorry, I am in a hurry this morning.",
+      "image": { "kind": "builtin", "key": "walk" },
+      "lineIds": ["l8"]
+    },
+    {
+      "id": "v5", "term": "give someone a ride", "ipa": "/ɡɪv ˈsʌmwʌn ə raɪd/", "pos": "phr",
+      "meaningVi": "cho ai đi cùng xe",
+      "definitionEn": "take someone somewhere in your car",
+      "example": "My sister can give you a ride home.",
+      "image": { "kind": "builtin", "key": "handshake" },
+      "lineIds": ["l10"]
+    },
+    {
+      "id": "v6", "term": "make it", "ipa": "/meɪk ɪt/", "pos": "phr",
+      "meaningVi": "kịp, đến được",
+      "definitionEn": "arrive in time, or succeed in getting somewhere",
+      "example": "If we leave now, we will make it.",
+      "image": { "kind": "builtin", "key": "star" },
+      "lineIds": ["l12"]
+    }
+  ],
+  "keyphrases": [
+    { "id": "k1", "text": "excuse me", "meaningVi": "xin lỗi cho hỏi", "note": "Mở lời với người lạ. Nhấn ở “CUSE”, không nhấn “ex”." },
+    { "id": "k2", "text": "hold on", "meaningVi": "chờ chút", "note": "Nối âm thành /həʊl‿dɒn/, không đọc rời hai từ." },
+    { "id": "k3", "text": "in a hurry", "meaningVi": "đang gấp", "note": "Ba từ đọc liền một hơi, “in a” gọn thành /ɪnə/." },
+    { "id": "k4", "text": "give you a ride", "meaningVi": "cho bạn đi cùng xe", "note": "“give you” nối thành /ɡɪvjə/ khi nói nhanh." },
+    { "id": "k5", "text": "we will make it", "meaningVi": "mình sẽ kịp", "note": "Người bản xứ thường nói “we'll make it” — một âm tiết cho “we'll”." }
+  ],
+  "lines": [
+    {
+      "id": "l1", "speaker": "SAM", "start": 0.0, "end": 3.0,
+      "text": "Excuse me, is this the last train tonight?",
+      "textVi": "Xin lỗi cho hỏi, đây là chuyến tàu cuối tối nay phải không?",
+      "keywords": ["excuse me"],
+      "vocabIds": [],
+      "notes": "Câu hỏi có/không: giọng lên ở cuối câu.",
+      "difficulty": 1
+    },
+    {
+      "id": "l2", "speaker": "MAI", "start": 3.2, "end": 6.6,
+      "text": "It is, but the board says it is delayed again.",
+      "textVi": "Đúng rồi, nhưng bảng ghi là nó lại bị hoãn nữa.",
+      "keywords": ["delayed"],
+      "vocabIds": ["v1"],
+      "notes": "Âm cuối /d/ trong “delayed” phải bật ra, nếu không thành “delay”.",
+      "difficulty": 2
+    },
+    {
+      "id": "l3", "speaker": "SAM", "start": 6.8, "end": 9.4,
+      "text": "Oh no. How long have you been waiting?",
+      "textVi": "Ôi không. Chị đợi bao lâu rồi?",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "“have you been” nói nhanh gần như /həvjəbɪn/.",
+      "difficulty": 2
+    },
+    {
+      "id": "l4", "speaker": "MAI", "start": 9.6, "end": 13.2,
+      "text": "Almost an hour. I have read every sign on this platform.",
+      "textVi": "Gần một tiếng. Tôi đọc hết mọi cái biển ở sân ga này rồi.",
+      "keywords": ["platform"],
+      "vocabIds": ["v2"],
+      "notes": "“an hour” nối âm: /ənˈaʊər/, chữ h không đọc.",
+      "difficulty": 2
+    },
+    {
+      "id": "l5", "speaker": "SAM", "start": 13.4, "end": 16.4,
+      "text": "Is there a bus I can take instead?",
+      "textVi": "Có xe buýt nào tôi đi thay được không?",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "Cụm “can take” đọc gọn, “can” nhẹ thành /kən/.",
+      "difficulty": 1
+    },
+    {
+      "id": "l6", "speaker": "MAI", "start": 16.6, "end": 19.6,
+      "text": "Hold on, let me check the app.",
+      "textVi": "Chờ chút, để tôi xem ứng dụng.",
+      "keywords": ["hold on"],
+      "vocabIds": ["v3"],
+      "notes": "“hold on” nối thành một khối, đừng ngắt giữa hai từ.",
+      "difficulty": 1
+    },
+    {
+      "id": "l7", "speaker": "MAI", "start": 19.8, "end": 23.4,
+      "text": "The last bus left ten minutes ago. I am sorry.",
+      "textVi": "Xe buýt cuối chạy cách đây mười phút rồi. Tôi xin lỗi.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "“minutes” hai âm tiết: /ˈmɪnɪts/, không thành ba.",
+      "difficulty": 2
+    },
+    {
+      "id": "l8", "speaker": "SAM", "start": 23.6, "end": 27.2,
+      "text": "That is fine. I am not in a hurry anymore.",
+      "textVi": "Không sao. Tôi cũng không còn gấp nữa.",
+      "keywords": ["in a hurry"],
+      "vocabIds": ["v4"],
+      "notes": "“in a hurry” ba từ một hơi; nhấn ở “HUR”.",
+      "difficulty": 2
+    },
+    {
+      "id": "l9", "speaker": "MAI", "start": 27.4, "end": 30.4,
+      "text": "Where are you trying to go?",
+      "textVi": "Anh định đi đâu?",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "“trying to” trong nói nhanh gần như /ˈtraɪnə/.",
+      "difficulty": 1
+    },
+    {
+      "id": "l10", "speaker": "SAM", "start": 30.6, "end": 34.4,
+      "text": "The old town. My hotel is near the river.",
+      "textVi": "Khu phố cổ. Khách sạn tôi ở gần bờ sông.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "Hai câu ngắn, ngắt rõ ở giữa.",
+      "difficulty": 1
+    },
+    {
+      "id": "l11", "speaker": "MAI", "start": 34.6, "end": 38.6,
+      "text": "My brother is picking me up. We can give you a ride.",
+      "textVi": "Anh tôi đang tới đón. Chúng tôi cho anh đi cùng xe được.",
+      "keywords": ["give you a ride"],
+      "vocabIds": ["v5"],
+      "notes": "“picking me up” nhấn ở “PICK” và “UP”, giữa nhẹ.",
+      "difficulty": 3
+    },
+    {
+      "id": "l12", "speaker": "SAM", "start": 38.8, "end": 42.4,
+      "text": "Are you sure? Then we will make it before midnight.",
+      "textVi": "Chị chắc không? Vậy là mình kịp trước nửa đêm.",
+      "keywords": ["we will make it"],
+      "vocabIds": ["v6"],
+      "notes": "Người bản xứ nói “we'll” một âm tiết — luyện riêng chỗ này.",
+      "difficulty": 3
+    }
+  ]
+}

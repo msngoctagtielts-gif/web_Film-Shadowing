@@ -1,0 +1,40 @@
+{
+  "site": {
+    "name": "Film Shadowing — Ms.Ngọc Elite English",
+    "tagline": "Học tiếng Anh bằng cách lồng tiếng cho phim"
+  },
+  "courses": [
+    {
+      "id": "khoi-dong",
+      "title": "Khởi động — lồng tiếng lần đầu",
+      "description": "Kịch bản gốc của trung tâm, giọng đọc máy. Học viên làm quen bốn vòng luyện trước khi vào phim thật.",
+      "lessons": [
+        {
+          "id": "demo-doan-thoai-ga-tau",
+          "title": "Tập 1 — Chuyến tàu cuối ngày",
+          "episodeLabel": "Tập 1",
+          "level": "A2–B1",
+          "lineCount": 12,
+          "sourceKind": "tts",
+          "summary": "Hoãn tàu, hỏi đường, được cho đi cùng xe. Luyện xin lỗi và hỏi thông tin."
+        }
+      ]
+    },
+    {
+      "id": "chuoi-phim-cua-ban",
+      "title": "Chuỗi phim của trung tâm",
+      "description": "Bài học dựng từ video của chính trung tâm hoặc video được phép sử dụng. Dùng trang Soạn bài để tạo.",
+      "lessons": [
+        {
+          "id": "youtube-khung-mau",
+          "title": "Khung mẫu — bài học từ video YouTube",
+          "episodeLabel": "Khung mẫu",
+          "level": "chưa đặt",
+          "lineCount": 3,
+          "sourceKind": "youtube",
+          "summary": "Chưa sẵn sàng dạy. Mở Soạn bài để bắt mốc thời gian và điền lời thoại thật."
+        }
+      ]
+    }
+  ]
+}

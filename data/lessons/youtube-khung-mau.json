@@ -1,0 +1,62 @@
+{
+  "id": "youtube-khung-mau",
+  "courseId": "chuoi-phim-cua-ban",
+  "title": "Khung mẫu — bài học từ video YouTube của bạn",
+  "level": "chưa đặt",
+  "episodeLabel": "Khung mẫu",
+  "summary": "Bản khung để tạo bài học từ một video trong chuỗi phim của trung tâm. Mở Soạn bài để bắt mốc thời gian và điền lời thoại.",
+  "notes": "CHƯA SẴN SÀNG DẠY. Ba câu dưới đây là câu hướng dẫn, không phải lời thoại của video. Hãy mở trang Soạn bài, vừa xem video vừa bấm bắt mốc thời gian, tự gõ lời thoại mà bạn nghe được, rồi xuất tệp JSON thay cho tệp này. Xem docs/06-tu-lieu-va-ban-quyen.md trước khi đưa video có bản quyền vào khoá học thu phí.",
+  "source": {
+    "type": "youtube",
+    "videoId": "g6PXXpA5zTk",
+    "voiceLang": "en-US",
+    "rightsNote": "CHƯA XÁC ĐỊNH — điền cơ sở sử dụng trước khi phát cho học viên. Video được phát qua trình phát nhúng chính thức của YouTube, không tải về, không cắt ghép, không phủ lớp lên khung phát."
+  },
+  "scoring": { "profile": "standard", "passMark": 70 },
+  "roles": [
+    { "id": "A", "label": "Nhân vật A" },
+    { "id": "B", "label": "Nhân vật B" }
+  ],
+  "vocab": [
+    {
+      "id": "v1", "term": "example", "ipa": "/ɪɡˈzɑːmpəl/", "pos": "n",
+      "meaningVi": "ví dụ (đây là thẻ mẫu — hãy thay bằng từ thật của cảnh)",
+      "definitionEn": "a thing that shows what something is like",
+      "example": "This card is only an example.",
+      "image": { "kind": "builtin", "key": "idea" },
+      "lineIds": ["l1"]
+    }
+  ],
+  "keyphrases": [
+    { "id": "k1", "text": "for example", "meaningVi": "ví dụ như", "note": "Thẻ mẫu — thay bằng cụm trọng tâm thật của cảnh." }
+  ],
+  "lines": [
+    {
+      "id": "l1", "speaker": "A", "start": 2.0, "end": 5.0,
+      "text": "This line is a placeholder, for example only.",
+      "textVi": "Câu này là câu giữ chỗ, chỉ để làm ví dụ.",
+      "keywords": ["for example"],
+      "vocabIds": ["v1"],
+      "notes": "Thay câu này bằng lời thoại bạn nghe được từ video.",
+      "difficulty": 1
+    },
+    {
+      "id": "l2", "speaker": "B", "start": 5.2, "end": 8.0,
+      "text": "Open the studio page to set the real timings.",
+      "textVi": "Mở trang Soạn bài để đặt mốc thời gian thật.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "",
+      "difficulty": 1
+    },
+    {
+      "id": "l3", "speaker": "A", "start": 8.2, "end": 11.0,
+      "text": "Then export the file and replace this one.",
+      "textVi": "Sau đó xuất tệp và thay cho tệp này.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "",
+      "difficulty": 1
+    }
+  ]
+}

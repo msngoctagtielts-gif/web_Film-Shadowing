@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+/tmp/
+
+# Ảnh chụp kiểm thử — tạo lại bằng: node tests/e2e/smoke.mjs
+tests/e2e/screenshots/

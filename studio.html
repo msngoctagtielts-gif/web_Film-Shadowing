@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soạn bài — Film Shadowing</title>
+<meta name="description" content="Bắt mốc thời gian từng câu thoại, điền lời và từ mới, xuất thành bài học.">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<div id="appbar"></div>
+
+<main class="stage">
+  <div class="card" style="margin-bottom:14px">
+    <div class="card__body">
+      <h1 style="font-size:1.2rem;margin:0 0 4px">Soạn bài từ video</h1>
+      <p class="hint" style="margin:0">Vừa xem video vừa bấm bắt mốc từng câu. Xong thì xuất tệp JSON và đặt vào <code>data/lessons/</code>.</p>
+    </div>
+  </div>
+
+  <div class="stage__grid">
+    <div class="stack">
+      <div class="card">
+        <div class="card__body stack">
+          <div class="field-row">
+            <div class="field">
+              <label for="inSource">Nguồn</label>
+              <select id="inSource">
+                <option value="youtube">YouTube (nhúng)</option>
+                <option value="file">Tệp của trung tâm (mp4/mp3)</option>
+                <option value="tts">Giọng đọc máy (kịch bản tự viết)</option>
+              </select>
+            </div>
+            <div class="field" id="wrapVideoId">
+              <label for="inVideoId">Link hoặc mã video YouTube</label>
+              <input type="text" id="inVideoId" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+          </div>
+          <div class="field" id="wrapFileUrl" hidden>
+            <label for="inFileUrl">Đường dẫn tệp</label>
+            <input type="text" id="inFileUrl" placeholder="assets/media/tap-01.mp4">
+          </div>
+          <button class="btn btn--primary btn--sm" id="btnLoadVideo">Nạp video</button>
+          <div class="player-box"><div class="player-box__frame" id="playerMount" style="display:grid;place-items:center;color:#7f8ea8;font-size:.9rem">Chưa nạp video</div></div>
+          <div class="transport" style="border-radius:var(--radius)">
+            <span class="hint">Thời điểm hiện tại</span>
+            <b id="nowTime" style="font-family:var(--font-mono)">0.00s</b>
+            <span class="transport__spacer"></span>
+            <button class="btn btn--sm" id="btnMarkStart">⤓ Mốc bắt đầu</button>
+            <button class="btn btn--sm" id="btnMarkEnd">⤒ Mốc kết thúc</button>
+            <button class="btn btn--sm btn--gold" id="btnAddLine">+ Thêm câu</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__head"><h2 style="font-size:1rem">Câu thoại</h2>
+          <span class="tag" id="lineCount">0 câu</span>
+          <span style="margin-left:auto"></span>
+          <button class="btn btn--sm btn--ghost" id="btnSortLines">Sắp theo thời gian</button>
+        </div>
+        <div class="card__body card__body--flush" id="lineList"></div>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="card__body stack">
+          <div class="field-row">
+            <div class="field"><label for="inId">Mã bài (id)</label><input type="text" id="inId" placeholder="tap-01-canh-ga"></div>
+            <div class="field"><label for="inLevel">Trình độ</label><input type="text" id="inLevel" placeholder="A2–B1"></div>
+          </div>
+          <div class="field"><label for="inTitle">Tiêu đề bài</label><input type="text" id="inTitle" placeholder="Tập 1 — Tên cảnh"></div>
+          <div class="field"><label for="inSummary">Mô tả ngắn</label><input type="text" id="inSummary"></div>
+          <div class="field-row">
+            <div class="field"><label for="inProfile">Bộ trọng số chấm</label>
+              <select id="inProfile">
+                <option value="starter">starter — mới bắt đầu</option>
+                <option value="standard" selected>standard — thông thường</option>
+                <option value="advanced">advanced — nặng về nhịp</option>
+              </select></div>
+            <div class="field"><label for="inPass">Điểm đạt</label><input type="number" id="inPass" value="70" min="0" max="100"></div>
+          </div>
+          <div class="field"><label for="inRights">Ghi chú quyền sử dụng tư liệu</label>
+            <textarea id="inRights" placeholder="Ví dụ: video do trung tâm tự sản xuất; hoặc: kênh X cho phép nhúng, dùng trong lớp miễn phí."></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__head"><h2 style="font-size:1rem">Từ mới</h2>
+          <span class="tag" id="vocabCount">0 từ</span>
+          <span style="margin-left:auto"></span>
+          <button class="btn btn--sm btn--gold" id="btnAddVocab">+ Thêm từ</button>
+        </div>
+        <div class="card__body card__body--flush" id="vocabList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card__head"><h2 style="font-size:1rem">Kiểm tra bài</h2>
+          <span style="margin-left:auto"></span>
+          <button class="btn btn--sm" id="btnValidate">Kiểm tra lại</button>
+        </div>
+        <div class="card__body" id="validateBox"><p class="hint">Bấm kiểm tra để xem lỗi trước khi xuất.</p></div>
+      </div>
+
+      <div class="card">
+        <div class="card__body stack stack--sm">
+          <button class="btn btn--primary btn--block" id="btnExport">⬇ Xuất tệp JSON</button>
+          <button class="btn btn--block" id="btnPreview">▶ Thử học bài này</button>
+          <div class="btn-row">
+            <button class="btn btn--sm" id="btnCopy">Sao chép JSON</button>
+            <label class="btn btn--sm" style="margin:0;font-weight:600">Nhập tệp
+              <input type="file" id="inImport" accept="application/json" hidden></label>
+          </div>
+          <p class="hint">Bản nháp tự lưu trên máy bạn sau mỗi thay đổi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="assets/js/pages/studio.js"></script>
+</body>
+</html>
