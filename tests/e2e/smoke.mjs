@@ -217,12 +217,132 @@ await check("không có lỗi JavaScript ở trang tiến độ", () => {
   assert(real.length === 0, real.join(" | "));
 });
 
+console.log("\n\x1b[1mBảng theo dõi lớp\x1b[0m");
+pageErrors.length = 0;
+await page.goto(`${BASE}/teacher.html`, { waitUntil: "networkidle" });
+
+await check("bảng mở ra là đã có lớp mẫu, không phải bảng trống", async () => {
+  await page.waitForSelector(".tile", { timeout: 8000 });
+  const n = await page.locator(".roster tbody tr, .attn__card").count();
+  assert(n > 0, "bảng trống trơn khi vừa mở");
+});
+
+await check("dải chỉ số hiện đủ sáu ô", async () => {
+  const n = await page.locator("#tiles .tile").count();
+  assert(n === 6, `mong đợi 6 ô, thấy ${n}`);
+});
+
+await check("thẻ Cần chú ý nêu rõ lý do và việc nên làm", async () => {
+  const cards = page.locator(".attn__card");
+  assert(await cards.count() > 0, "không có thẻ cần chú ý nào");
+  const txt = await cards.first().textContent();
+  assert(/Nên làm/.test(txt), "thẻ không có phần việc nên làm");
+  assert(/ngày|lượt|%/.test(txt), "thẻ không nêu lý do cụ thể");
+});
+
+await check("cảnh báo có ý nghĩa: không gắn cờ quá nửa lớp", async () => {
+  const flagged = await page.locator(".attn__card").count();
+  const total = await page.evaluate(() => {
+    const t = document.querySelectorAll(".tile__val");
+    return Number(t[0]?.textContent || 0);
+  });
+  assert(flagged <= Math.ceil(total / 2), `gắn cờ ${flagged}/${total} — cảnh báo mất ý nghĩa`);
+});
+
+await check("tab Cả lớp sắp xếp được theo cột", async () => {
+  await page.locator('[data-tab="roster"]').click();
+  await page.waitForSelector(".roster tbody tr", { timeout: 4000 });
+  const before = await page.locator(".roster tbody tr td:first-child").first().textContent();
+  await page.locator('th[data-sort="percent"]').click();
+  await page.waitForTimeout(250);
+  const after = await page.locator(".roster tbody tr td:first-child").first().textContent();
+  assert(before !== after || (await page.locator("th[aria-sort]").count()) > 0, "bấm tiêu đề cột không đổi thứ tự");
+});
+
+await check("tab Điểm nghẽn chỉ ra câu cả lớp cùng sai", async () => {
+  await page.locator('[data-tab="block"]').click();
+  await page.waitForSelector(".bars__row", { timeout: 4000 });
+  const n = await page.locator(".bars__row").count();
+  assert(n >= 3, `mong đợi >= 3 cột, thấy ${n}`);
+});
+
+await check("cột biểu đồ không tràn ra ngoài khung", async () => {
+  const over = await page.evaluate(() => {
+    let worst = 0;
+    document.querySelectorAll(".bars__fill").forEach((el) => {
+      const t = el.parentElement.getBoundingClientRect();
+      const f = el.getBoundingClientRect();
+      worst = Math.max(worst, f.right - t.right);
+    });
+    return worst;
+  });
+  assert(over <= 1, `cột vượt khung ${over.toFixed(1)}px`);
+});
+
+await check("tab Từng em vẽ được đường điểm theo ngày", async () => {
+  await page.locator('[data-tab="one"]').click();
+  await page.waitForSelector("#pickStudent", { timeout: 4000 });
+  const hasSpark = await page.locator(".spark").count();
+  assert(hasSpark > 0, "không vẽ được đường tiến bộ");
+});
+
+await check("đổi học viên thì bảng đổi theo", async () => {
+  const names = await page.locator("#pickStudent option").allTextContents();
+  assert(names.length >= 2, "chỉ có một học viên");
+  const before = await page.locator("#tabOne .tile__val").first().textContent();
+  await page.selectOption("#pickStudent", names[1]);
+  await page.waitForTimeout(300);
+  const after = await page.locator("#tabOne .tile__val").first().textContent();
+  assert(before !== after, "đổi học viên nhưng số liệu không đổi");
+});
+
+await check("xuất được báo cáo chuẩn bị buổi tới", async () => {
+  await page.locator("#btnReport").click();
+  await page.waitForSelector("#reportText", { timeout: 4000 });
+  const txt = await page.inputValue("#reportText");
+  assert(/GỌI TRƯỚC BUỔI HỌC/.test(txt), "báo cáo thiếu phần gọi học viên");
+  assert(/DẠY LẠI/.test(txt), "báo cáo thiếu phần dạy lại");
+  await page.locator(".modal__head [data-close]").click();
+});
+
+await check("từ chối tệp không đúng định dạng, báo rõ lý do", async () => {
+  await page.setInputFiles("#inFiles", {
+    name: "linh-tinh.json", mimeType: "application/json", buffer: Buffer.from('{"khong":"phai"}'),
+  });
+  await page.waitForTimeout(500);
+  const notice = await page.locator("#notice").textContent();
+  assert(/không đọc được/i.test(notice), `không báo lỗi: ${notice.slice(0, 80)}`);
+});
+
+await check("nạp tệp học viên thật thì lớp mẫu tự nhường chỗ", async () => {
+  const real = {
+    profile: { name: "Học Viên Thật" },
+    lessons: { "demo-doan-thoai-ga-tau": { startedAt: new Date().toISOString(), vocab: {},
+      lines: { l1: { best: 82, attempts: [{ at: new Date().toISOString(), overall: 82, parts: {}, mode: "asr", durationSec: 3 }] } } } },
+    totals: { attempts: 1, recordedSec: 3 }, streak: { count: 1 },
+  };
+  await page.setInputFiles("#inFiles", {
+    name: "tien-do-that.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(real)),
+  });
+  await page.waitForTimeout(600);
+  const meta = await page.locator("#classMeta").textContent();
+  assert(!/lớp mẫu/.test(meta), "lớp mẫu vẫn còn sau khi nạp học viên thật");
+  const body = await page.locator("body").textContent();
+  assert(/Học Viên Thật/.test(body), "không thấy học viên vừa nạp");
+});
+await page.screenshot({ path: `${OUT}/08-bang-lop.png`, fullPage: true });
+
+await check("không có lỗi JavaScript ở bảng theo dõi", () => {
+  const real = pageErrors.filter((e) => !/favicon|net::ERR_/.test(e));
+  assert(real.length === 0, real.join(" | "));
+});
+
 console.log("\n\x1b[1mMàn hình điện thoại (390x844)\x1b[0m");
 const mob = await ctx.newPage();
 await mob.setViewportSize({ width: 390, height: 844 });
 await mob.goto(`${BASE}/lesson.html?lesson=demo-doan-thoai-ga-tau`, { waitUntil: "networkidle" });
 await mob.waitForSelector("#lessonRoot:not([hidden])", { timeout: 8000 });
-const modalClose = mob.locator(".modal [data-close]").first();
+const modalClose = mob.locator(".modal__head [data-close]");
 if (await modalClose.count()) await modalClose.click();
 await check("không bị tràn ngang trên điện thoại", async () => {
   const over = await mob.evaluate(() =>
@@ -230,6 +350,15 @@ await check("không bị tràn ngang trên điện thoại", async () => {
   assert(over <= 1, `tràn ngang ${over}px`);
 });
 await mob.screenshot({ path: `${OUT}/07-dien-thoai.png`, fullPage: true });
+
+await mob.goto(`${BASE}/teacher.html`, { waitUntil: "networkidle" });
+await mob.waitForSelector(".tile", { timeout: 8000 });
+await check("bảng theo dõi không tràn ngang trên điện thoại", async () => {
+  const over = await mob.evaluate(() =>
+    document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  assert(over <= 1, `tràn ngang ${over}px`);
+});
+await mob.screenshot({ path: `${OUT}/09-bang-lop-dien-thoai.png`, fullPage: true });
 
 await browser.close();
 

@@ -171,6 +171,7 @@ export function appBar(current = "") {
       ${link("index.html", "Khoá học", "home")}
       ${link("studio.html", "Soạn bài", "studio")}
       ${link("progress.html", "Tiến độ", "progress")}
+      ${link("teacher.html", "Bảng lớp", "teacher")}
       <button id="themeToggle" title="Đổi nền sáng/tối" aria-label="Đổi nền sáng/tối">◐</button>
     </nav>
   </div></header>`;

@@ -7,3 +7,4 @@ node_modules/
 
 # Ảnh chụp kiểm thử — tạo lại bằng: node tests/e2e/smoke.mjs
 tests/e2e/screenshots/
+dist/

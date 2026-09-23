@@ -30,7 +30,13 @@ Vì sao đúng thứ tự này: `docs/03-thiet-ke-su-pham.md`.
 
 ## Giáo viên làm gì
 
-Mở `studio.html`, dán link YouTube (hoặc chọn tệp của trung tâm), vừa xem vừa bấm `I` / `O` để bắt mốc từng câu, gõ lời thoại và từ mới, bấm kiểm tra, rồi xuất tệp JSON vào `data/lessons/`.
+**Soạn bài.** Mở `studio.html`, dán link YouTube (hoặc chọn tệp của trung tâm), vừa xem vừa bấm `I` / `O` để bắt mốc từng câu, gõ lời thoại và từ mới, bấm kiểm tra, rồi xuất tệp JSON vào `data/lessons/`.
+
+**Theo dõi lớp.** Mở `teacher.html`. Học viên vào trang Tiến độ bấm *Xuất tiến độ* và gửi tệp cho cô;
+cô kéo thả vào bảng. Bảng trả lời ba câu hỏi trước mỗi buổi: hôm nay nên gọi ai, cả lớp đang vướng câu
+nào, và em này có tiến bộ thật không. Nút *Xuất báo cáo buổi tới* cho ra bản tóm tắt dán thẳng vào giáo án.
+
+Bản xem thử chạy sẵn với lớp mẫu: `dist/bang-theo-doi-lop.html` (gói bằng `node tools/build-artifact.mjs`).
 
 ## Cấu trúc mã nguồn
 
@@ -39,6 +45,7 @@ index.html      danh sách khoá học
 lesson.html     màn luyện lồng tiếng (màn chính)
 studio.html     công cụ soạn bài cho giáo viên
 progress.html   tiến độ, câu cần luyện lại, xuất/nhập dữ liệu
+teacher.html    bảng theo dõi lớp cho giáo viên
 
 assets/js/core/
   text.js           chuẩn hoá văn bản, khoá ngữ âm, độ giống giữa hai từ
@@ -47,23 +54,25 @@ assets/js/core/
   asr.js            nhận dạng giọng nói (Web Speech API)
   player.js         một giao diện chung cho YouTube / tệp / giọng máy
   store.js          tiến độ học (localStorage)
+  analytics.js      phân tích lớp: ai cần gọi, câu nào cả lớp cùng sai
   srs.js            lịch ôn từ vựng giãn dần
   lesson-loader.js  nạp và KIỂM TRA bài học
 
 assets/js/ui/       các khối giao diện dùng lại
 assets/js/pages/    điều phối từng trang
 data/lessons/       bài học dạng JSON
-tests/              131 kiểm thử lõi + 23 kiểm thử trình duyệt thật
+tools/              sinh lớp mẫu, gói bản xem thử lên web
+tests/              171 kiểm thử lõi + 37 kiểm thử trình duyệt thật
 docs/               nghiên cứu thị trường, chiến lược, sư phạm, kiểm định, ra thị trường
 ```
 
 ## Kiểm thử
 
 ```bash
-npm test                                  # 131 phép kiểm lõi, không cần trình duyệt
+npm test                                  # 171 phép kiểm lõi, không cần trình duyệt
 
 python3 -m http.server 4173 &             # kiểm thử trình duyệt cần máy chủ
-node tests/e2e/smoke.mjs                  # 23 phép kiểm trên Chromium thật
+node tests/e2e/smoke.mjs                  # 37 phép kiểm trên Chromium thật
 ```
 
 Kiểm thử trình duyệt cần gói `playwright`. Nếu máy đã cài toàn cục:

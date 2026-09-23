@@ -6,8 +6,8 @@
 
 | Tầng | Chạy bằng | Kiểm cái gì | Số phép kiểm |
 |---|---|---|---|
-| **Lõi** | `npm test` (Node, không cần trình duyệt) | Chuẩn hoá văn bản, chấm điểm, phân tích âm thanh, lưu tiến độ, tính hợp lệ của dữ liệu bài học | 131 |
-| **Trình duyệt** | `node tests/e2e/smoke.mjs` (Chromium thật) | Trang dựng được, bấm được, thu âm được, không có lỗi JavaScript, không tràn ngang trên điện thoại | 23 |
+| **Lõi** | `npm test` (Node, không cần trình duyệt) | Chuẩn hoá văn bản, chấm điểm, phân tích âm thanh, lưu tiến độ, tính hợp lệ của dữ liệu bài học, phân tích lớp | 171 |
+| **Trình duyệt** | `node tests/e2e/smoke.mjs` (Chromium thật) | Trang dựng được, bấm được, thu âm được, bảng lớp chạy đúng, không có lỗi JavaScript, không tràn ngang trên điện thoại | 37 |
 | **Tay** | Người thật, danh mục ở mục 3 | Chất lượng âm thanh, cảm nhận sư phạm, thiết bị thật | — |
 
 ### Chạy thế nào
@@ -33,6 +33,8 @@ Ghi lại đây vì chúng cho thấy các phép kiểm này không phải hình
 | Cụm "call you back" **rơi mất "you"** vẫn tính là đạt | Cụm trọng tâm mất ý nghĩa | `scoring.test.mjs` — "mất một từ trong cụm thì cụm bị đánh trượt" |
 | "in" và "on" cho cùng khoá ngữ âm → 0,82 điểm giống | Lỗi giới từ không bao giờ bị bắt | `text.test.mjs` — "không hào phóng với từ ngắn khác nhau" |
 | `mute()` chưa tồn tại trên trình phát | Vòng Lồng tiếng vẫn phát tiếng gốc — hỏng chính tính năng cốt lõi | kiểm tay, mục 3 |
+| Hướng tiến bộ so điểm theo trình tự thời gian, mà câu về sau trong bài vốn khó hơn | **5/6 học viên bị gắn cờ "đang đi xuống", kể cả em đạt 92%** — cảnh báo mất hết ý nghĩa | `analytics.test.mjs` — "câu về sau khó hơn KHÔNG bị hiểu nhầm thành đi xuống" |
+| Nút "Xoá lớp" dùng hộp thoại `confirm` của trình duyệt | Trên bản web xuất bản, hộp thoại không hiện được nên nút im lặng không làm gì | thay bằng xác nhận hai bước ngay trên trang |
 
 ## 3. Danh mục kiểm tay — chạy trước mỗi lần phát hành
 
@@ -68,12 +70,21 @@ Máy không kiểm được những thứ dưới đây. Đánh dấu từng dò
 - [ ] Không có phần tử nào của ứng dụng phủ lên khung phát ở bất kỳ kích thước màn hình nào.
 - [ ] Video bị chủ sở hữu tắt nhúng → có báo lỗi dễ hiểu, không phải màn hình trắng.
 
-### 3.5 Dữ liệu học viên
+### 3.5 Bảng theo dõi lớp
+- [ ] Nạp tệp của 3 học viên thật → cả ba xuất hiện, không bị trùng.
+- [ ] Nạp lại tệp mới của cùng một em → ghi đè, không tạo dòng thứ hai.
+- [ ] Nạp tệp hỏng hoặc tệp không phải tiến độ → báo rõ lý do, không vỡ bảng.
+- [ ] Số em bị gắn cờ "cần chú ý" **không quá nửa lớp** — quá nửa là cảnh báo mất ý nghĩa.
+- [ ] Mỗi thẻ cần chú ý đều nêu được lý do cụ thể và việc nên làm.
+- [ ] Bảng điểm nghẽn chỉ ra câu mà giáo viên đồng ý là khó thật.
+- [ ] Báo cáo buổi tới dán được vào giáo án mà không phải sửa.
+
+### 3.6 Dữ liệu học viên
 - [ ] Học xong, đóng trình duyệt, mở lại → tiến độ còn nguyên.
 - [ ] Xuất tiến độ → nhập lại ở máy khác → đúng dữ liệu.
 - [ ] Bấm "Xoá hết" → có hỏi lại trước khi xoá.
 
-### 3.6 Chưa làm được (nợ kỹ thuật, ghi ra để không quên)
+### 3.7 Chưa làm được (nợ kỹ thuật, ghi ra để không quên)
 - [ ] Chưa kiểm với trình đọc màn hình thật (NVDA, VoiceOver).
 - [ ] Chưa kiểm trên iOS Safari bản thật (mới chỉ Chromium trên máy chủ).
 - [ ] Chưa đo được mức tiêu thụ pin khi học 30 phút trên điện thoại.

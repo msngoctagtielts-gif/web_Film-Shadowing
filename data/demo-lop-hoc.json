@@ -1,0 +1,2345 @@
+{
+  "generatedAt": "2026-09-23T06:15:36.199Z",
+  "note": "Lớp học mẫu do tools/tao-lop-mau.mjs sinh ra. Không phải học viên thật.",
+  "students": [
+    {
+      "name": "Nguyễn Thu An",
+      "note": "Học đều, tiến bộ rõ",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Nguyễn Thu An",
+          "level": "starter",
+          "createdAt": "2026-09-10T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 88,
+                "attempts": [
+                  {
+                    "at": "2026-09-12T02:15:36.199Z",
+                    "overall": 74,
+                    "parts": {
+                      "accuracy": 78,
+                      "completeness": 76,
+                      "keywords": 71,
+                      "pacing": 68
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-12T03:15:36.199Z",
+                    "overall": 88,
+                    "parts": {
+                      "accuracy": 92,
+                      "completeness": 90,
+                      "keywords": 85,
+                      "pacing": 82
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 92,
+                "attempts": [
+                  {
+                    "at": "2026-09-12T02:15:36.199Z",
+                    "overall": 78,
+                    "parts": {
+                      "accuracy": 82,
+                      "completeness": 80,
+                      "keywords": 75,
+                      "pacing": 72
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-12T03:15:36.199Z",
+                    "overall": 92,
+                    "parts": {
+                      "accuracy": 96,
+                      "completeness": 94,
+                      "keywords": 89,
+                      "pacing": 86
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 85,
+                "attempts": [
+                  {
+                    "at": "2026-09-14T02:15:36.199Z",
+                    "overall": 71,
+                    "parts": {
+                      "accuracy": 75,
+                      "completeness": 73,
+                      "keywords": 68,
+                      "pacing": 65
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-14T03:15:36.199Z",
+                    "overall": 85,
+                    "parts": {
+                      "accuracy": 89,
+                      "completeness": 87,
+                      "keywords": 82,
+                      "pacing": 79
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              },
+              "l4": {
+                "best": 79,
+                "attempts": [
+                  {
+                    "at": "2026-09-14T02:15:36.199Z",
+                    "overall": 65,
+                    "parts": {
+                      "accuracy": 69,
+                      "completeness": 67,
+                      "keywords": 62,
+                      "pacing": 59
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-14T03:15:36.199Z",
+                    "overall": 79,
+                    "parts": {
+                      "accuracy": 83,
+                      "completeness": 81,
+                      "keywords": 76,
+                      "pacing": 73
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l5": {
+                "best": 90,
+                "attempts": [
+                  {
+                    "at": "2026-09-16T02:15:36.199Z",
+                    "overall": 76,
+                    "parts": {
+                      "accuracy": 80,
+                      "completeness": 78,
+                      "keywords": 73,
+                      "pacing": 70
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-16T03:15:36.199Z",
+                    "overall": 90,
+                    "parts": {
+                      "accuracy": 94,
+                      "completeness": 92,
+                      "keywords": 87,
+                      "pacing": 84
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l6": {
+                "best": 83,
+                "attempts": [
+                  {
+                    "at": "2026-09-16T02:15:36.199Z",
+                    "overall": 69,
+                    "parts": {
+                      "accuracy": 73,
+                      "completeness": 71,
+                      "keywords": 66,
+                      "pacing": 63
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-16T03:15:36.199Z",
+                    "overall": 83,
+                    "parts": {
+                      "accuracy": 87,
+                      "completeness": 85,
+                      "keywords": 80,
+                      "pacing": 77
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l7": {
+                "best": 87,
+                "attempts": [
+                  {
+                    "at": "2026-09-18T02:15:36.199Z",
+                    "overall": 73,
+                    "parts": {
+                      "accuracy": 77,
+                      "completeness": 75,
+                      "keywords": 70,
+                      "pacing": 67
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-18T03:15:36.199Z",
+                    "overall": 87,
+                    "parts": {
+                      "accuracy": 91,
+                      "completeness": 89,
+                      "keywords": 84,
+                      "pacing": 81
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l8": {
+                "best": 76,
+                "attempts": [
+                  {
+                    "at": "2026-09-18T02:15:36.199Z",
+                    "overall": 62,
+                    "parts": {
+                      "accuracy": 66,
+                      "completeness": 64,
+                      "keywords": 59,
+                      "pacing": 56
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-18T03:15:36.199Z",
+                    "overall": 76,
+                    "parts": {
+                      "accuracy": 80,
+                      "completeness": 78,
+                      "keywords": 73,
+                      "pacing": 70
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l9": {
+                "best": 91,
+                "attempts": [
+                  {
+                    "at": "2026-09-20T02:15:36.199Z",
+                    "overall": 77,
+                    "parts": {
+                      "accuracy": 81,
+                      "completeness": 79,
+                      "keywords": 74,
+                      "pacing": 71
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-20T03:15:36.199Z",
+                    "overall": 91,
+                    "parts": {
+                      "accuracy": 95,
+                      "completeness": 93,
+                      "keywords": 88,
+                      "pacing": 85
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l10": {
+                "best": 84,
+                "attempts": [
+                  {
+                    "at": "2026-09-20T02:15:36.200Z",
+                    "overall": 70,
+                    "parts": {
+                      "accuracy": 74,
+                      "completeness": 72,
+                      "keywords": 67,
+                      "pacing": 64
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-20T03:15:36.200Z",
+                    "overall": 84,
+                    "parts": {
+                      "accuracy": 88,
+                      "completeness": 86,
+                      "keywords": 81,
+                      "pacing": 78
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  }
+                ]
+              },
+              "l11": {
+                "best": 62,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 48,
+                    "parts": {
+                      "accuracy": 52,
+                      "completeness": 50,
+                      "keywords": 45,
+                      "pacing": 42
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-22T03:15:36.200Z",
+                    "overall": 62,
+                    "parts": {
+                      "accuracy": 66,
+                      "completeness": 64,
+                      "keywords": 59,
+                      "pacing": 56
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  }
+                ]
+              },
+              "l12": {
+                "best": 58,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 44,
+                    "parts": {
+                      "accuracy": 48,
+                      "completeness": 46,
+                      "keywords": 41,
+                      "pacing": 38
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-22T03:15:36.200Z",
+                    "overall": 58,
+                    "parts": {
+                      "accuracy": 62,
+                      "completeness": 60,
+                      "keywords": 55,
+                      "pacing": 52
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-12T02:15:36.200Z",
+                "known": true
+              },
+              "v2": {
+                "seenAt": "2026-09-12T02:15:36.200Z",
+                "known": true
+              },
+              "v3": {
+                "seenAt": "2026-09-12T02:15:36.200Z",
+                "known": true
+              },
+              "v4": {
+                "seenAt": "2026-09-12T02:15:36.200Z",
+                "known": true
+              },
+              "v5": {
+                "seenAt": "2026-09-12T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-12T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 6,
+          "lastDay": "2026-09-22",
+          "days": [
+            "2026-09-12",
+            "2026-09-14",
+            "2026-09-16",
+            "2026-09-18",
+            "2026-09-20",
+            "2026-09-22"
+          ]
+        },
+        "totals": {
+          "attempts": 24,
+          "recordedSec": 94.8
+        }
+      }
+    },
+    {
+      "name": "Trần Minh Bình",
+      "note": "Thu rất nhiều lượt nhưng chưa qua — bài đang quá sức",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Trần Minh Bình",
+          "level": "starter",
+          "createdAt": "2026-09-11T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 58,
+                "attempts": [
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 30,
+                    "parts": {
+                      "accuracy": 34,
+                      "completeness": 32,
+                      "keywords": 27,
+                      "pacing": 24
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-13T03:15:36.200Z",
+                    "overall": 37,
+                    "parts": {
+                      "accuracy": 41,
+                      "completeness": 39,
+                      "keywords": 34,
+                      "pacing": 31
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-13T04:15:36.200Z",
+                    "overall": 44,
+                    "parts": {
+                      "accuracy": 48,
+                      "completeness": 46,
+                      "keywords": 41,
+                      "pacing": 38
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 58,
+                    "parts": {
+                      "accuracy": 62,
+                      "completeness": 60,
+                      "keywords": 55,
+                      "pacing": 52
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 52,
+                "attempts": [
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 24,
+                    "parts": {
+                      "accuracy": 28,
+                      "completeness": 26,
+                      "keywords": 21,
+                      "pacing": 18
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-13T03:15:36.200Z",
+                    "overall": 31,
+                    "parts": {
+                      "accuracy": 35,
+                      "completeness": 33,
+                      "keywords": 28,
+                      "pacing": 25
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-13T04:15:36.200Z",
+                    "overall": 38,
+                    "parts": {
+                      "accuracy": 42,
+                      "completeness": 40,
+                      "keywords": 35,
+                      "pacing": 32
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 52,
+                    "parts": {
+                      "accuracy": 56,
+                      "completeness": 54,
+                      "keywords": 49,
+                      "pacing": 46
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 61,
+                "attempts": [
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 33,
+                    "parts": {
+                      "accuracy": 37,
+                      "completeness": 35,
+                      "keywords": 30,
+                      "pacing": 27
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-13T03:15:36.200Z",
+                    "overall": 40,
+                    "parts": {
+                      "accuracy": 44,
+                      "completeness": 42,
+                      "keywords": 37,
+                      "pacing": 34
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-13T04:15:36.200Z",
+                    "overall": 47,
+                    "parts": {
+                      "accuracy": 51,
+                      "completeness": 49,
+                      "keywords": 44,
+                      "pacing": 41
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-13T02:15:36.200Z",
+                    "overall": 61,
+                    "parts": {
+                      "accuracy": 65,
+                      "completeness": 63,
+                      "keywords": 58,
+                      "pacing": 55
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              },
+              "l4": {
+                "best": 47,
+                "attempts": [
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 19,
+                    "parts": {
+                      "accuracy": 23,
+                      "completeness": 21,
+                      "keywords": 16,
+                      "pacing": 13
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-15T03:15:36.200Z",
+                    "overall": 26,
+                    "parts": {
+                      "accuracy": 30,
+                      "completeness": 28,
+                      "keywords": 23,
+                      "pacing": 20
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-15T04:15:36.200Z",
+                    "overall": 33,
+                    "parts": {
+                      "accuracy": 37,
+                      "completeness": 35,
+                      "keywords": 30,
+                      "pacing": 27
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 47,
+                    "parts": {
+                      "accuracy": 51,
+                      "completeness": 49,
+                      "keywords": 44,
+                      "pacing": 41
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l5": {
+                "best": 55,
+                "attempts": [
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 27,
+                    "parts": {
+                      "accuracy": 31,
+                      "completeness": 29,
+                      "keywords": 24,
+                      "pacing": 21
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-15T03:15:36.200Z",
+                    "overall": 34,
+                    "parts": {
+                      "accuracy": 38,
+                      "completeness": 36,
+                      "keywords": 31,
+                      "pacing": 28
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-15T04:15:36.200Z",
+                    "overall": 41,
+                    "parts": {
+                      "accuracy": 45,
+                      "completeness": 43,
+                      "keywords": 38,
+                      "pacing": 35
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 55,
+                    "parts": {
+                      "accuracy": 59,
+                      "completeness": 57,
+                      "keywords": 52,
+                      "pacing": 49
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l6": {
+                "best": 44,
+                "attempts": [
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 16,
+                    "parts": {
+                      "accuracy": 20,
+                      "completeness": 18,
+                      "keywords": 13,
+                      "pacing": 10
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-17T03:15:36.200Z",
+                    "overall": 23,
+                    "parts": {
+                      "accuracy": 27,
+                      "completeness": 25,
+                      "keywords": 20,
+                      "pacing": 17
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-17T04:15:36.200Z",
+                    "overall": 30,
+                    "parts": {
+                      "accuracy": 34,
+                      "completeness": 32,
+                      "keywords": 27,
+                      "pacing": 24
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 44,
+                    "parts": {
+                      "accuracy": 48,
+                      "completeness": 46,
+                      "keywords": 41,
+                      "pacing": 38
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l7": {
+                "best": 59,
+                "attempts": [
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 31,
+                    "parts": {
+                      "accuracy": 35,
+                      "completeness": 33,
+                      "keywords": 28,
+                      "pacing": 25
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T03:15:36.200Z",
+                    "overall": 38,
+                    "parts": {
+                      "accuracy": 42,
+                      "completeness": 40,
+                      "keywords": 35,
+                      "pacing": 32
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T04:15:36.200Z",
+                    "overall": 45,
+                    "parts": {
+                      "accuracy": 49,
+                      "completeness": 47,
+                      "keywords": 42,
+                      "pacing": 39
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 59,
+                    "parts": {
+                      "accuracy": 63,
+                      "completeness": 61,
+                      "keywords": 56,
+                      "pacing": 53
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l8": {
+                "best": 41,
+                "attempts": [
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 13,
+                    "parts": {
+                      "accuracy": 17,
+                      "completeness": 15,
+                      "keywords": 10,
+                      "pacing": 7
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T03:15:36.200Z",
+                    "overall": 20,
+                    "parts": {
+                      "accuracy": 24,
+                      "completeness": 22,
+                      "keywords": 17,
+                      "pacing": 14
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T04:15:36.200Z",
+                    "overall": 27,
+                    "parts": {
+                      "accuracy": 31,
+                      "completeness": 29,
+                      "keywords": 24,
+                      "pacing": 21
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 41,
+                    "parts": {
+                      "accuracy": 45,
+                      "completeness": 43,
+                      "keywords": 38,
+                      "pacing": 35
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l9": {
+                "best": 50,
+                "attempts": [
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 22,
+                    "parts": {
+                      "accuracy": 26,
+                      "completeness": 24,
+                      "keywords": 19,
+                      "pacing": 16
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-19T03:15:36.200Z",
+                    "overall": 29,
+                    "parts": {
+                      "accuracy": 33,
+                      "completeness": 31,
+                      "keywords": 26,
+                      "pacing": 23
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-19T04:15:36.200Z",
+                    "overall": 36,
+                    "parts": {
+                      "accuracy": 40,
+                      "completeness": 38,
+                      "keywords": 33,
+                      "pacing": 30
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 50,
+                    "parts": {
+                      "accuracy": 54,
+                      "completeness": 52,
+                      "keywords": 47,
+                      "pacing": 44
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l10": {
+                "best": 46,
+                "attempts": [
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 18,
+                    "parts": {
+                      "accuracy": 22,
+                      "completeness": 20,
+                      "keywords": 15,
+                      "pacing": 12
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-19T03:15:36.200Z",
+                    "overall": 25,
+                    "parts": {
+                      "accuracy": 29,
+                      "completeness": 27,
+                      "keywords": 22,
+                      "pacing": 19
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-19T04:15:36.200Z",
+                    "overall": 32,
+                    "parts": {
+                      "accuracy": 36,
+                      "completeness": 34,
+                      "keywords": 29,
+                      "pacing": 26
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 46,
+                    "parts": {
+                      "accuracy": 50,
+                      "completeness": 48,
+                      "keywords": 43,
+                      "pacing": 40
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  }
+                ]
+              },
+              "l11": {
+                "best": 33,
+                "attempts": [
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 5,
+                    "parts": {
+                      "accuracy": 9,
+                      "completeness": 7,
+                      "keywords": 2,
+                      "pacing": -1
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-21T03:15:36.200Z",
+                    "overall": 12,
+                    "parts": {
+                      "accuracy": 16,
+                      "completeness": 14,
+                      "keywords": 9,
+                      "pacing": 6
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-21T04:15:36.200Z",
+                    "overall": 19,
+                    "parts": {
+                      "accuracy": 23,
+                      "completeness": 21,
+                      "keywords": 16,
+                      "pacing": 13
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 33,
+                    "parts": {
+                      "accuracy": 37,
+                      "completeness": 35,
+                      "keywords": 30,
+                      "pacing": 27
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  }
+                ]
+              },
+              "l12": {
+                "best": 29,
+                "attempts": [
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 1,
+                    "parts": {
+                      "accuracy": 5,
+                      "completeness": 3,
+                      "keywords": -2,
+                      "pacing": -5
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-21T03:15:36.200Z",
+                    "overall": 8,
+                    "parts": {
+                      "accuracy": 12,
+                      "completeness": 10,
+                      "keywords": 5,
+                      "pacing": 2
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-21T04:15:36.200Z",
+                    "overall": 15,
+                    "parts": {
+                      "accuracy": 19,
+                      "completeness": 17,
+                      "keywords": 12,
+                      "pacing": 9
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 29,
+                    "parts": {
+                      "accuracy": 33,
+                      "completeness": 31,
+                      "keywords": 26,
+                      "pacing": 23
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-13T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-13T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 5,
+          "lastDay": "2026-09-21",
+          "days": [
+            "2026-09-13",
+            "2026-09-15",
+            "2026-09-17",
+            "2026-09-19",
+            "2026-09-21"
+          ]
+        },
+        "totals": {
+          "attempts": 48,
+          "recordedSec": 189.6
+        }
+      }
+    },
+    {
+      "name": "Lê Khánh Chi",
+      "note": "Biến mất 12 ngày — nguy cơ nghỉ",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Lê Khánh Chi",
+          "level": "starter",
+          "createdAt": "2026-09-05T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 74,
+                "attempts": [
+                  {
+                    "at": "2026-09-07T02:15:36.200Z",
+                    "overall": 60,
+                    "parts": {
+                      "accuracy": 64,
+                      "completeness": 62,
+                      "keywords": 57,
+                      "pacing": 54
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-07T03:15:36.200Z",
+                    "overall": 74,
+                    "parts": {
+                      "accuracy": 78,
+                      "completeness": 76,
+                      "keywords": 71,
+                      "pacing": 68
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 71,
+                "attempts": [
+                  {
+                    "at": "2026-09-07T02:15:36.200Z",
+                    "overall": 57,
+                    "parts": {
+                      "accuracy": 61,
+                      "completeness": 59,
+                      "keywords": 54,
+                      "pacing": 51
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-07T03:15:36.200Z",
+                    "overall": 71,
+                    "parts": {
+                      "accuracy": 75,
+                      "completeness": 73,
+                      "keywords": 68,
+                      "pacing": 65
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 68,
+                "attempts": [
+                  {
+                    "at": "2026-09-07T02:15:36.200Z",
+                    "overall": 54,
+                    "parts": {
+                      "accuracy": 58,
+                      "completeness": 56,
+                      "keywords": 51,
+                      "pacing": 48
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-07T03:15:36.200Z",
+                    "overall": 68,
+                    "parts": {
+                      "accuracy": 72,
+                      "completeness": 70,
+                      "keywords": 65,
+                      "pacing": 62
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              },
+              "l4": {
+                "best": 72,
+                "attempts": [
+                  {
+                    "at": "2026-09-07T02:15:36.200Z",
+                    "overall": 58,
+                    "parts": {
+                      "accuracy": 62,
+                      "completeness": 60,
+                      "keywords": 55,
+                      "pacing": 52
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-07T03:15:36.200Z",
+                    "overall": 72,
+                    "parts": {
+                      "accuracy": 76,
+                      "completeness": 74,
+                      "keywords": 69,
+                      "pacing": 66
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l5": {
+                "best": 66,
+                "attempts": [
+                  {
+                    "at": "2026-09-09T02:15:36.200Z",
+                    "overall": 52,
+                    "parts": {
+                      "accuracy": 56,
+                      "completeness": 54,
+                      "keywords": 49,
+                      "pacing": 46
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-09T03:15:36.200Z",
+                    "overall": 66,
+                    "parts": {
+                      "accuracy": 70,
+                      "completeness": 68,
+                      "keywords": 63,
+                      "pacing": 60
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-07T02:15:36.200Z",
+                "known": true
+              },
+              "v2": {
+                "seenAt": "2026-09-07T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-07T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 3,
+          "lastDay": "2026-09-11",
+          "days": [
+            "2026-09-07",
+            "2026-09-09",
+            "2026-09-11"
+          ]
+        },
+        "totals": {
+          "attempts": 10,
+          "recordedSec": 37.2
+        }
+      }
+    },
+    {
+      "name": "Phạm Anh Dũng",
+      "note": "Thu lại mà điểm tệ đi — đang nản",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Phạm Anh Dũng",
+          "level": "starter",
+          "createdAt": "2026-09-12T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 91,
+                "attempts": [
+                  {
+                    "at": "2026-09-14T02:15:36.200Z",
+                    "overall": 91,
+                    "parts": {
+                      "accuracy": 95,
+                      "completeness": 93,
+                      "keywords": 88,
+                      "pacing": 85
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-14T03:15:36.200Z",
+                    "overall": 82,
+                    "parts": {
+                      "accuracy": 86,
+                      "completeness": 84,
+                      "keywords": 79,
+                      "pacing": 76
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 88,
+                "attempts": [
+                  {
+                    "at": "2026-09-14T02:15:36.200Z",
+                    "overall": 88,
+                    "parts": {
+                      "accuracy": 92,
+                      "completeness": 90,
+                      "keywords": 85,
+                      "pacing": 82
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-14T03:15:36.200Z",
+                    "overall": 79,
+                    "parts": {
+                      "accuracy": 83,
+                      "completeness": 81,
+                      "keywords": 76,
+                      "pacing": 73
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 84,
+                "attempts": [
+                  {
+                    "at": "2026-09-14T02:15:36.200Z",
+                    "overall": 84,
+                    "parts": {
+                      "accuracy": 88,
+                      "completeness": 86,
+                      "keywords": 81,
+                      "pacing": 78
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-14T03:15:36.200Z",
+                    "overall": 75,
+                    "parts": {
+                      "accuracy": 79,
+                      "completeness": 77,
+                      "keywords": 72,
+                      "pacing": 69
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              },
+              "l4": {
+                "best": 77,
+                "attempts": [
+                  {
+                    "at": "2026-09-16T02:15:36.200Z",
+                    "overall": 77,
+                    "parts": {
+                      "accuracy": 81,
+                      "completeness": 79,
+                      "keywords": 74,
+                      "pacing": 71
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-16T03:15:36.200Z",
+                    "overall": 68,
+                    "parts": {
+                      "accuracy": 72,
+                      "completeness": 70,
+                      "keywords": 65,
+                      "pacing": 62
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l5": {
+                "best": 70,
+                "attempts": [
+                  {
+                    "at": "2026-09-16T02:15:36.200Z",
+                    "overall": 70,
+                    "parts": {
+                      "accuracy": 74,
+                      "completeness": 72,
+                      "keywords": 67,
+                      "pacing": 64
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-16T03:15:36.200Z",
+                    "overall": 61,
+                    "parts": {
+                      "accuracy": 65,
+                      "completeness": 63,
+                      "keywords": 58,
+                      "pacing": 55
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l6": {
+                "best": 66,
+                "attempts": [
+                  {
+                    "at": "2026-09-16T02:15:36.200Z",
+                    "overall": 66,
+                    "parts": {
+                      "accuracy": 70,
+                      "completeness": 68,
+                      "keywords": 63,
+                      "pacing": 60
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-16T03:15:36.200Z",
+                    "overall": 57,
+                    "parts": {
+                      "accuracy": 61,
+                      "completeness": 59,
+                      "keywords": 54,
+                      "pacing": 51
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l7": {
+                "best": 61,
+                "attempts": [
+                  {
+                    "at": "2026-09-18T02:15:36.200Z",
+                    "overall": 61,
+                    "parts": {
+                      "accuracy": 65,
+                      "completeness": 63,
+                      "keywords": 58,
+                      "pacing": 55
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-18T03:15:36.200Z",
+                    "overall": 52,
+                    "parts": {
+                      "accuracy": 56,
+                      "completeness": 54,
+                      "keywords": 49,
+                      "pacing": 46
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l8": {
+                "best": 58,
+                "attempts": [
+                  {
+                    "at": "2026-09-18T02:15:36.200Z",
+                    "overall": 58,
+                    "parts": {
+                      "accuracy": 62,
+                      "completeness": 60,
+                      "keywords": 55,
+                      "pacing": 52
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-18T03:15:36.200Z",
+                    "overall": 49,
+                    "parts": {
+                      "accuracy": 53,
+                      "completeness": 51,
+                      "keywords": 46,
+                      "pacing": 43
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l9": {
+                "best": 55,
+                "attempts": [
+                  {
+                    "at": "2026-09-18T02:15:36.200Z",
+                    "overall": 55,
+                    "parts": {
+                      "accuracy": 59,
+                      "completeness": 57,
+                      "keywords": 52,
+                      "pacing": 49
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-18T03:15:36.200Z",
+                    "overall": 46,
+                    "parts": {
+                      "accuracy": 50,
+                      "completeness": 48,
+                      "keywords": 43,
+                      "pacing": 40
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l10": {
+                "best": 52,
+                "attempts": [
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 52,
+                    "parts": {
+                      "accuracy": 56,
+                      "completeness": 54,
+                      "keywords": 49,
+                      "pacing": 46
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-21T03:15:36.200Z",
+                    "overall": 43,
+                    "parts": {
+                      "accuracy": 47,
+                      "completeness": 45,
+                      "keywords": 40,
+                      "pacing": 37
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  }
+                ]
+              },
+              "l11": {
+                "best": 48,
+                "attempts": [
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 48,
+                    "parts": {
+                      "accuracy": 52,
+                      "completeness": 50,
+                      "keywords": 45,
+                      "pacing": 42
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-21T03:15:36.200Z",
+                    "overall": 39,
+                    "parts": {
+                      "accuracy": 43,
+                      "completeness": 41,
+                      "keywords": 36,
+                      "pacing": 33
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  }
+                ]
+              },
+              "l12": {
+                "best": 45,
+                "attempts": [
+                  {
+                    "at": "2026-09-21T02:15:36.200Z",
+                    "overall": 45,
+                    "parts": {
+                      "accuracy": 49,
+                      "completeness": 47,
+                      "keywords": 42,
+                      "pacing": 39
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-21T03:15:36.200Z",
+                    "overall": 36,
+                    "parts": {
+                      "accuracy": 40,
+                      "completeness": 38,
+                      "keywords": 33,
+                      "pacing": 30
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-14T02:15:36.200Z",
+                "known": true
+              },
+              "v2": {
+                "seenAt": "2026-09-14T02:15:36.200Z",
+                "known": true
+              },
+              "v3": {
+                "seenAt": "2026-09-14T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-14T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 4,
+          "lastDay": "2026-09-21",
+          "days": [
+            "2026-09-14",
+            "2026-09-16",
+            "2026-09-18",
+            "2026-09-21"
+          ]
+        },
+        "totals": {
+          "attempts": 24,
+          "recordedSec": 94.8
+        }
+      }
+    },
+    {
+      "name": "Vũ Thanh Hà",
+      "note": "Mới bắt đầu hôm qua",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Vũ Thanh Hà",
+          "level": "starter",
+          "createdAt": "2026-09-20T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 72,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 72,
+                    "parts": {
+                      "accuracy": 76,
+                      "completeness": 74,
+                      "keywords": 69,
+                      "pacing": 66
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 65,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 65,
+                    "parts": {
+                      "accuracy": 69,
+                      "completeness": 67,
+                      "keywords": 62,
+                      "pacing": 59
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 58,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 58,
+                    "parts": {
+                      "accuracy": 62,
+                      "completeness": 60,
+                      "keywords": 55,
+                      "pacing": 52
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-22T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-22T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 1,
+          "lastDay": "2026-09-22",
+          "days": [
+            "2026-09-22"
+          ]
+        },
+        "totals": {
+          "attempts": 3,
+          "recordedSec": 10.8
+        }
+      }
+    },
+    {
+      "name": "Đỗ Đăng Khoa",
+      "note": "Gần xong cả bài",
+      "data": {
+        "version": 1,
+        "profile": {
+          "name": "Đỗ Đăng Khoa",
+          "level": "starter",
+          "createdAt": "2026-09-13T02:15:36.200Z"
+        },
+        "settings": {
+          "asrEnabled": true,
+          "rate": 1,
+          "hideText": false,
+          "showVi": true,
+          "voiceLang": "en-US"
+        },
+        "lessons": {
+          "demo-doan-thoai-ga-tau": {
+            "lines": {
+              "l1": {
+                "best": 94,
+                "attempts": [
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 80,
+                    "parts": {
+                      "accuracy": 84,
+                      "completeness": 82,
+                      "keywords": 77,
+                      "pacing": 74
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-15T03:15:36.200Z",
+                    "overall": 94,
+                    "parts": {
+                      "accuracy": 98,
+                      "completeness": 96,
+                      "keywords": 91,
+                      "pacing": 88
+                    },
+                    "heardText": "Excuse me, is this the last train tonight?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l2": {
+                "best": 90,
+                "attempts": [
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 76,
+                    "parts": {
+                      "accuracy": 80,
+                      "completeness": 78,
+                      "keywords": 73,
+                      "pacing": 70
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  },
+                  {
+                    "at": "2026-09-15T03:15:36.200Z",
+                    "overall": 90,
+                    "parts": {
+                      "accuracy": 94,
+                      "completeness": 92,
+                      "keywords": 87,
+                      "pacing": 84
+                    },
+                    "heardText": "It is, but the board says it is delayed again.",
+                    "mode": "asr",
+                    "durationSec": 4
+                  }
+                ]
+              },
+              "l3": {
+                "best": 88,
+                "attempts": [
+                  {
+                    "at": "2026-09-15T02:15:36.200Z",
+                    "overall": 74,
+                    "parts": {
+                      "accuracy": 78,
+                      "completeness": 76,
+                      "keywords": 71,
+                      "pacing": 68
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  },
+                  {
+                    "at": "2026-09-15T03:15:36.200Z",
+                    "overall": 88,
+                    "parts": {
+                      "accuracy": 92,
+                      "completeness": 90,
+                      "keywords": 85,
+                      "pacing": 82
+                    },
+                    "heardText": "Oh no. How long have you been waiting?",
+                    "mode": "asr",
+                    "durationSec": 3.2
+                  }
+                ]
+              },
+              "l4": {
+                "best": 92,
+                "attempts": [
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 78,
+                    "parts": {
+                      "accuracy": 82,
+                      "completeness": 80,
+                      "keywords": 75,
+                      "pacing": 72
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-17T03:15:36.200Z",
+                    "overall": 92,
+                    "parts": {
+                      "accuracy": 96,
+                      "completeness": 94,
+                      "keywords": 89,
+                      "pacing": 86
+                    },
+                    "heardText": "Almost an hour. I have read every sign on this platform.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l5": {
+                "best": 86,
+                "attempts": [
+                  {
+                    "at": "2026-09-17T02:15:36.200Z",
+                    "overall": 72,
+                    "parts": {
+                      "accuracy": 76,
+                      "completeness": 74,
+                      "keywords": 69,
+                      "pacing": 66
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-17T03:15:36.200Z",
+                    "overall": 86,
+                    "parts": {
+                      "accuracy": 90,
+                      "completeness": 88,
+                      "keywords": 83,
+                      "pacing": 80
+                    },
+                    "heardText": "Is there a bus I can take instead?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l6": {
+                "best": 89,
+                "attempts": [
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 75,
+                    "parts": {
+                      "accuracy": 79,
+                      "completeness": 77,
+                      "keywords": 72,
+                      "pacing": 69
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-19T03:15:36.200Z",
+                    "overall": 89,
+                    "parts": {
+                      "accuracy": 93,
+                      "completeness": 91,
+                      "keywords": 86,
+                      "pacing": 83
+                    },
+                    "heardText": "Hold on, let me check the app.",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l7": {
+                "best": 91,
+                "attempts": [
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 77,
+                    "parts": {
+                      "accuracy": 81,
+                      "completeness": 79,
+                      "keywords": 74,
+                      "pacing": 71
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-19T03:15:36.200Z",
+                    "overall": 91,
+                    "parts": {
+                      "accuracy": 95,
+                      "completeness": 93,
+                      "keywords": 88,
+                      "pacing": 85
+                    },
+                    "heardText": "The last bus left ten minutes ago. I am sorry.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l8": {
+                "best": 85,
+                "attempts": [
+                  {
+                    "at": "2026-09-19T02:15:36.200Z",
+                    "overall": 71,
+                    "parts": {
+                      "accuracy": 75,
+                      "completeness": 73,
+                      "keywords": 68,
+                      "pacing": 65
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-19T03:15:36.200Z",
+                    "overall": 85,
+                    "parts": {
+                      "accuracy": 89,
+                      "completeness": 87,
+                      "keywords": 82,
+                      "pacing": 79
+                    },
+                    "heardText": "That is fine. I am not in a hurry anymore.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              },
+              "l9": {
+                "best": 87,
+                "attempts": [
+                  {
+                    "at": "2026-09-20T02:15:36.200Z",
+                    "overall": 73,
+                    "parts": {
+                      "accuracy": 77,
+                      "completeness": 75,
+                      "keywords": 70,
+                      "pacing": 67
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  },
+                  {
+                    "at": "2026-09-20T03:15:36.200Z",
+                    "overall": 87,
+                    "parts": {
+                      "accuracy": 91,
+                      "completeness": 89,
+                      "keywords": 84,
+                      "pacing": 81
+                    },
+                    "heardText": "Where are you trying to go?",
+                    "mode": "asr",
+                    "durationSec": 3.6
+                  }
+                ]
+              },
+              "l10": {
+                "best": 90,
+                "attempts": [
+                  {
+                    "at": "2026-09-20T02:15:36.200Z",
+                    "overall": 76,
+                    "parts": {
+                      "accuracy": 80,
+                      "completeness": 78,
+                      "keywords": 73,
+                      "pacing": 70
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  },
+                  {
+                    "at": "2026-09-20T03:15:36.200Z",
+                    "overall": 90,
+                    "parts": {
+                      "accuracy": 94,
+                      "completeness": 92,
+                      "keywords": 87,
+                      "pacing": 84
+                    },
+                    "heardText": "The old town. My hotel is near the river.",
+                    "mode": "asr",
+                    "durationSec": 4.4
+                  }
+                ]
+              },
+              "l11": {
+                "best": 71,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 57,
+                    "parts": {
+                      "accuracy": 61,
+                      "completeness": 59,
+                      "keywords": 54,
+                      "pacing": 51
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  },
+                  {
+                    "at": "2026-09-22T03:15:36.200Z",
+                    "overall": 71,
+                    "parts": {
+                      "accuracy": 75,
+                      "completeness": 73,
+                      "keywords": 68,
+                      "pacing": 65
+                    },
+                    "heardText": "My brother is picking me up. We can give you a ride.",
+                    "mode": "asr",
+                    "durationSec": 4.6
+                  }
+                ]
+              },
+              "l12": {
+                "best": 69,
+                "attempts": [
+                  {
+                    "at": "2026-09-22T02:15:36.200Z",
+                    "overall": 55,
+                    "parts": {
+                      "accuracy": 59,
+                      "completeness": 57,
+                      "keywords": 52,
+                      "pacing": 49
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  },
+                  {
+                    "at": "2026-09-22T03:15:36.200Z",
+                    "overall": 69,
+                    "parts": {
+                      "accuracy": 73,
+                      "completeness": 71,
+                      "keywords": 66,
+                      "pacing": 63
+                    },
+                    "heardText": "Are you sure? Then we will make it before midnight.",
+                    "mode": "asr",
+                    "durationSec": 4.2
+                  }
+                ]
+              }
+            },
+            "vocab": {
+              "v1": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              },
+              "v2": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              },
+              "v3": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              },
+              "v4": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              },
+              "v5": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              },
+              "v6": {
+                "seenAt": "2026-09-15T02:15:36.200Z",
+                "known": true
+              }
+            },
+            "startedAt": "2026-09-15T02:15:36.200Z",
+            "completedAt": null
+          }
+        },
+        "streak": {
+          "count": 5,
+          "lastDay": "2026-09-22",
+          "days": [
+            "2026-09-15",
+            "2026-09-17",
+            "2026-09-19",
+            "2026-09-20",
+            "2026-09-22"
+          ]
+        },
+        "totals": {
+          "attempts": 24,
+          "recordedSec": 94.8
+        }
+      }
+    }
+  ]
+}

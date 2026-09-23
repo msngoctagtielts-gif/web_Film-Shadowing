@@ -16,8 +16,9 @@
 | Ba nguồn video: YouTube nhúng, tệp riêng, giọng đọc máy | `core/player.js` |
 | Studio soạn bài: bắt mốc thời gian, kiểm lỗi, xuất JSON | `pages/studio.js` |
 | Tiến độ, chuỗi ngày, câu cần luyện lại, xuất/nhập dữ liệu | `pages/progress.js` |
+| Bảng theo dõi lớp: ai cần gọi, điểm nghẽn của lớp, từng em, báo cáo buổi tới | `pages/teacher.js`, `core/analytics.js` |
 | Ôn từ vựng theo lặp giãn cách | `core/srs.js` |
-| 131 kiểm thử lõi + 23 kiểm thử trình duyệt thật | `tests/` |
+| 171 kiểm thử lõi + 37 kiểm thử trình duyệt thật | `tests/` |
 
 ## 2. Lộ trình
 
@@ -35,8 +36,8 @@
 ### Giai đoạn 2 — Cho giáo viên nhìn thấy (6 → 12 tuần)
 **Mục tiêu: cô xem được học viên đang làm gì mà không cần học viên gửi tệp.**
 
-- [ ] Máy chủ tối thiểu: tài khoản + đồng bộ tiến độ.
-- [ ] Bảng của giáo viên: ai đang học, ai chững lại, câu nào cả lớp cùng sai.
+- [x] ~~Bảng của giáo viên: ai đang học, ai chững lại, câu nào cả lớp cùng sai.~~ **Đã có** (`teacher.html`) — chạy bằng tệp học viên gửi cô, chưa cần máy chủ.
+- [ ] Máy chủ tối thiểu: tài khoản + đồng bộ tiến độ, để cô không phải xin tệp từng em.
 - [ ] Giáo viên nghe được bản thu và gửi nhận xét bằng giọng nói.
 - [ ] Báo cáo hằng tuần tự động gửi phụ huynh.
 
@@ -87,6 +88,7 @@ Ghi ra để người sửa sau không mất thời gian tìm hiểu:
 | Chỗ | Vấn đề | Khi nào phải xử lý |
 |---|---|---|
 | `core/store.js` | Toàn bộ tiến độ nằm trong localStorage. Xoá dữ liệu trình duyệt là mất sạch. | Giai đoạn 2, khi có máy chủ |
+| `pages/teacher.js` | Dữ liệu vào bảng bằng cách học viên gửi tệp — phụ thuộc việc các em nhớ xuất và gửi | Giai đoạn 2; phần phân tích và hiển thị giữ nguyên, chỉ thay chỗ nạp tệp bằng gọi API |
 | `core/player.js` (TTS) | Trình duyệt không cho biết thời lượng thật của giọng máy, nên con trỏ thời gian là ước lượng | Chỉ ảnh hưởng bài mẫu; bỏ qua được |
 | `core/asr.js` | Phụ thuộc Web Speech API — Firefox không có, và âm thanh đi qua máy chủ của nhà cung cấp trình duyệt | Giai đoạn 3, khi chuyển sang API chấm riêng |
 | Bản thu | Giữ trong bộ nhớ phiên, đóng tab là mất | Khi học viên cần nghe lại bản thu tuần trước |

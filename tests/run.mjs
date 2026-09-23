@@ -14,6 +14,7 @@ await import("./scoring.test.mjs");
 await import("./recorder.test.mjs");
 await import("./store.test.mjs");
 await import("./lesson-data.test.mjs");
+await import("./analytics.test.mjs");
 
 const ok = await runAll();
 process.exit(ok ? 0 : 1);

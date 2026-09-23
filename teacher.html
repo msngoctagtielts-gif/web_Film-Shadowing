@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bảng theo dõi lớp — Film Shadowing</title>
+<meta name="description" content="Giáo viên xem ai đang chững lại, câu nào cả lớp cùng sai, và nên gọi ai trước.">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<div id="appbar"></div>
+
+<main class="wrap section" style="padding-top:18px">
+  <div class="row" style="margin-bottom:14px">
+    <div style="flex:1 1 280px">
+      <h1 style="margin:0 0 2px;font-size:1.3rem">Bảng theo dõi lớp</h1>
+      <p class="hint" style="margin:0" id="classMeta">Đang nạp…</p>
+    </div>
+    <div class="btn-row">
+      <label class="btn btn--sm btn--primary" style="margin:0;font-weight:600">＋ Nạp tệp học viên
+        <input type="file" id="inFiles" accept="application/json" multiple hidden></label>
+      <button class="btn btn--sm" id="btnDemo">Xem lớp mẫu</button>
+      <button class="btn btn--sm" id="btnReport">Xuất báo cáo buổi tới</button>
+      <button class="btn btn--sm btn--ghost" id="btnClear">Xoá lớp</button>
+    </div>
+  </div>
+
+  <div id="tiles" style="margin-bottom:16px"></div>
+  <div id="notice"></div>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="attn">Cần chú ý</button>
+      <button role="tab" aria-selected="false" data-tab="roster">Cả lớp</button>
+      <button role="tab" aria-selected="false" data-tab="block">Điểm nghẽn của lớp</button>
+      <button role="tab" aria-selected="false" data-tab="one">Từng em</button>
+    </div>
+    <div class="card__body">
+      <div id="tabAttn"></div>
+      <div id="tabRoster" hidden></div>
+      <div id="tabBlock" hidden></div>
+      <div id="tabOne" hidden></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card__body">
+      <div class="dropzone" id="drop">
+        <b>Kéo thả tệp tiến độ của học viên vào đây</b>
+        <div style="margin-top:5px">Học viên vào trang <strong>Tiến độ</strong> → bấm <strong>Xuất tiến độ</strong> → gửi tệp cho cô qua Zalo hoặc email.</div>
+      </div>
+      <p class="hint" style="margin:10px 0 0">
+        Lớp học được lưu trên chính máy này, không gửi đi đâu. Nạp lại tệp mới của cùng một em sẽ ghi đè dữ liệu cũ của em đó.
+      </p>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="assets/js/pages/teacher.js"></script>
+</body>
+</html>

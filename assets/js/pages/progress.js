@@ -79,6 +79,11 @@ async function boot() {
 }
 
 function wireData() {
+  // Tên học viên đi kèm tệp xuất, để bảng theo dõi của giáo viên nhận ra ai là ai.
+  const nameBox = $("inName");
+  nameBox.value = store.getProfile().name || "";
+  nameBox.addEventListener("change", () => store.setProfile({ name: nameBox.value.trim() }));
+
   $("btnExport").addEventListener("click", () => {
     const blob = new Blob([store.exportJson()], { type: "application/json" });
     const a = document.createElement("a");
