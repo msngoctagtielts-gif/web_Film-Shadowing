@@ -19,6 +19,7 @@ import { gradeAttempt } from "../core/scoring.js";
 import { store } from "../core/store.js";
 import { createScriptPanel, lineAtTime } from "../ui/script-panel.js";
 import { openVocabPreview } from "../ui/vocab-preview.js";
+import { openExercises } from "../ui/exercise-panel.js";
 import { illustrationFor } from "../ui/illustrations.js";
 import { appBar, wireTheme, banner, cueHtml, scoreCardHtml, esc, fmtTime } from "../ui/components.js";
 
@@ -547,6 +548,22 @@ function openVocab() {
   });
 }
 
+/**
+ * Mở bài tập. Đề sinh ra từ chính kịch bản của bài, và câu nghe phát bằng đúng
+ * nguồn của bài — video thật nếu có, giọng máy nếu là kịch bản tự viết.
+ */
+function openQuiz() {
+  openExercises({
+    lesson: state.lesson,
+    playLine: (lineId) => {
+      const line = state.lesson.lines.find((l) => l.id === lineId);
+      if (!line) return;
+      muteModel(false);
+      state.player.playSegment(line.start, line.end, { loop: false, rate: 1 });
+    },
+  });
+}
+
 function setStep(step) {
   state.step = step;
   document.querySelectorAll("[data-step]").forEach((b) =>
@@ -565,6 +582,7 @@ function setupControls() {
   $("btnPrev").addEventListener("click", gotoPrev);
   $("btnNext").addEventListener("click", gotoNext);
   $("btnVocab").addEventListener("click", openVocab);
+  $("btnQuiz").addEventListener("click", openQuiz);
 
   $("btnLoop").addEventListener("click", () => {
     state.loop = !state.loop;

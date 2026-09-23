@@ -161,6 +161,47 @@ await check("không có lỗi JavaScript trong cả màn học", () => {
   assert(real.length === 0, real.join(" | "));
 });
 
+await check("mở được bài tập sinh từ chính kịch bản", async () => {
+  await page.locator("#btnQuiz").click();
+  await page.waitForSelector(".modal .ex-options, .modal .ex-tiles", { timeout: 6000 });
+  const q = await page.locator(".modal [data-role=\"quiz\"]").textContent();
+  assert(q.length > 20, "màn bài tập trống");
+});
+
+await check("chọn đáp án thì chấm ngay và giải thích", async () => {
+  const opts = page.locator(".modal .ex-option");
+  if (await opts.count()) {
+    await opts.first().click();
+    await page.locator('.modal [data-role="next"]').click();
+    await page.waitForTimeout(400);
+    const fb = await page.locator('.modal [data-role="feedback"]').textContent();
+    assert(/Đúng|Chưa đúng/.test(fb), `không có phản hồi: ${fb.slice(0, 60)}`);
+    const marked = await page.locator('.modal .ex-option[data-verdict="right"]').count();
+    assert(marked === 1, "không tô đáp án đúng");
+  }
+});
+
+await check("đi hết bộ đề thì có bảng tổng kết", async () => {
+  for (let n = 0; n < 40; n++) {
+    const btn = page.locator('.modal [data-role="next"]');
+    if (!(await btn.count())) break;
+    if ((await btn.textContent()) === "Làm lại bộ đề khác") break;
+    if (await btn.isDisabled()) {
+      const o = page.locator(".modal .ex-option:not([disabled])");
+      const t = page.locator(".modal .ex-tile:not([data-used])");
+      if (await o.count()) await o.first().click();
+      else if (await t.count()) await t.first().click();
+      else break;
+    }
+    await btn.click();
+    await page.waitForTimeout(150);
+  }
+  const body = await page.locator('.modal [data-role="quiz"]').textContent();
+  assert(/câu đúng/.test(body), "không thấy bảng tổng kết");
+});
+await page.screenshot({ path: `${OUT}/11-bai-tap.png` });
+await page.locator(".modal__head [data-close]").click();
+
 console.log("\n\x1b[1mSoạn bài\x1b[0m");
 pageErrors.length = 0;
 await page.goto(`${BASE}/studio.html`, { waitUntil: "networkidle" });
@@ -179,11 +220,47 @@ await check("nhận ra mã video từ link YouTube đầy đủ", async () => {
   assert(draft.source.videoId === "g6PXXpA5zTk", `mã tách ra sai: ${draft.source.videoId}`);
 });
 
+await check("dán cả kịch bản một lần thì ra đủ câu thoại", async () => {
+  await page.fill("#inScript", "MAI: Hold on, let me check the app.\nSAM: Is there a bus I can take instead?\nMAI: The last bus left ten minutes ago.\nSAM: That is fine. I am not in a hurry.");
+  await page.fill("#inScriptStart", "10");
+  await page.locator("#btnBuildScript").click();
+  await page.waitForTimeout(700);
+  const n = await page.locator('[data-field="text"]').count();
+  assert(n === 4, `mong đợi 4 câu, thấy ${n}`);
+  const first = await page.inputValue('[data-field="start"][data-i="0"]');
+  assert(Number(first) === 10, `câu đầu phải bắt đầu ở giây 10, thấy ${first}`);
+});
+
+await check("tự nhận ra cụm trọng tâm trong kịch bản", async () => {
+  const kws = await page.inputValue('[data-field="keywords"][data-i="0"]');
+  assert(/hold on/i.test(kws), `không nhận ra cụm: "${kws}"`);
+});
+
+await check("nhắc về quyền sử dụng khi dán lời thoại của người khác", async () => {
+  const notice = await page.locator("#scriptNotice").textContent();
+  assert(/quyền sử dụng|bản quyền|thu phí/i.test(notice), "không nhắc gì về bản quyền");
+});
+
+await check("gợi ý từ mới và thêm được vào bộ thẻ", async () => {
+  const add = page.locator("[data-addvocab]");
+  assert(await add.count() > 0, "không gợi ý từ mới nào");
+  await add.first().click();
+  await page.waitForTimeout(400);
+  assert(await page.locator("[data-vf=\"term\"]").count() > 0, "không thêm được vào bộ thẻ");
+});
+
+await check("cho người soạn thấy bài sinh được bao nhiêu câu hỏi", async () => {
+  const box = await page.locator("#quizBox").textContent();
+  assert(/câu hỏi|chưa có/.test(box), `ô bài tập trống: ${box.slice(0, 60)}`);
+});
+await page.screenshot({ path: `${OUT}/12-soan-bai-dan-kich-ban.png`, fullPage: true });
+
 await check("thêm câu và kiểm tra bài chỉ ra lỗi còn thiếu", async () => {
+  const before = await page.locator('[data-field="text"]').count();
   await page.locator("#btnAddLine").click();
   await page.waitForTimeout(200);
   const n = await page.locator('[data-field="text"]').count();
-  assert(n === 1, `mong đợi 1 câu, thấy ${n}`);
+  assert(n === before + 1, `mong đợi ${before + 1} câu, thấy ${n}`);
   await page.locator("#btnValidate").click();
   await page.waitForTimeout(200);
   const box = await page.locator("#validateBox").textContent();

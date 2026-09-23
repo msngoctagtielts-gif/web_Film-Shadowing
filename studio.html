@@ -54,6 +54,29 @@
       </div>
 
       <div class="card">
+        <div class="card__head">
+          <h2 style="font-size:1rem">Dán cả kịch bản một lần</h2>
+          <span class="tag tag--gold">nhanh nhất</span>
+        </div>
+        <div class="card__body stack stack--sm">
+          <p class="hint" style="margin:0">
+            Gõ hoặc dán đoạn hội thoại, mỗi câu một dòng. Nhận cả dạng
+            <code>TÊN: lời thoại</code> và cả phụ đề .srt. Máy sẽ tách dòng, đoán vai,
+            ước lượng mốc thời gian và gợi ý cụm trọng tâm — bạn chỉ chỉnh lại.
+          </p>
+          <textarea id="inScript" style="min-height:130px" placeholder="MAI: Hold on, let me check the app.&#10;SAM: Is there a bus I can take instead?&#10;MAI: The last bus left ten minutes ago."></textarea>
+          <div class="row">
+            <label for="inScriptStart" style="margin:0">Câu đầu bắt đầu ở giây</label>
+            <input type="number" id="inScriptStart" value="0" step="0.5" style="width:96px">
+            <button class="btn btn--sm btn--primary" id="btnScriptNow">Lấy giây hiện tại</button>
+            <span style="margin-left:auto"></span>
+            <button class="btn btn--sm btn--gold" id="btnBuildScript">Tạo câu thoại →</button>
+          </div>
+          <div id="scriptNotice"></div>
+        </div>
+      </div>
+
+      <div class="card">
         <div class="card__head"><h2 style="font-size:1rem">Câu thoại</h2>
           <span class="tag" id="lineCount">0 câu</span>
           <span style="margin-left:auto"></span>
@@ -93,6 +116,14 @@
           <button class="btn btn--sm btn--gold" id="btnAddVocab">+ Thêm từ</button>
         </div>
         <div class="card__body card__body--flush" id="vocabList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card__head"><h2 style="font-size:1rem">Bài tập sinh được</h2>
+          <span style="margin-left:auto"></span>
+          <button class="btn btn--sm" id="btnTryQuiz">Thử làm</button>
+        </div>
+        <div class="card__body" id="quizBox"></div>
       </div>
 
       <div class="card">

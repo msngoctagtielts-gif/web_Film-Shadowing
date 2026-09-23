@@ -9,6 +9,9 @@
 import { createPlayer } from "../core/player.js";
 import { validateLesson, normalizeLesson } from "../core/lesson-loader.js";
 import { glyphKeys } from "../ui/illustrations.js";
+import { buildLinesFromScript } from "../core/suggest.js";
+import { exerciseCoverage, EXERCISE_LABELS } from "../core/exercises.js";
+import { openExercises } from "../ui/exercise-panel.js";
 import { appBar, wireTheme, esc, banner, fmtTime } from "../ui/components.js";
 
 const $ = (id) => document.getElementById(id);
@@ -58,6 +61,7 @@ function boot() {
   wireMeta();
   wireButtons();
   runValidate();
+  renderQuizBox();
 }
 
 function fillMeta() {
@@ -207,6 +211,7 @@ function renderLines() {
       saveDraft();
       if (f === "start" || f === "end" || f === "keywords") { renderLines(); }
       runValidate();
+      renderQuizBox();
     });
   });
 
@@ -261,7 +266,7 @@ function renderVocab() {
       if (f === "imageKey") v.image = el.value ? { kind: "builtin", key: el.value } : undefined;
       else if (f === "lineIds") v.lineIds = el.value.split(",").map((s) => s.trim()).filter(Boolean);
       else v[f] = el.value;
-      saveDraft(); runValidate();
+      saveDraft(); runValidate(); renderQuizBox();
     });
   });
   $("vocabList").querySelectorAll("[data-vact]").forEach((btn) => btn.addEventListener("click", () => {
@@ -273,6 +278,90 @@ function renderVocab() {
 function addVocab() {
   draft.vocab.push({ id: `v${draft.vocab.length + 1}`, term: "", ipa: "", pos: "", meaningVi: "", example: "", lineIds: [] });
   saveDraft(); renderVocab();
+}
+
+/* ---------------------- dán cả kịch bản một lần --------------------------- */
+
+/**
+ * Biến đoạn văn bản dán vào thành các dòng thoại có mốc thời gian.
+ *
+ * Mốc do máy ước lượng theo số âm tiết — đủ để bài chạy được ngay, nhưng vẫn
+ * phải chỉnh bằng I/O trên video thật cho khớp khung hình. Giao diện nói rõ
+ * điều đó thay vì để người soạn tưởng đã xong.
+ */
+function buildFromScript() {
+  const raw = $("inScript").value;
+  if (!raw.trim()) {
+    $("scriptNotice").innerHTML = banner("warn", "Chưa có gì trong ô kịch bản.");
+    return;
+  }
+  const startSec = Number($("inScriptStart").value) || 0;
+  const { lines, vocabSuggestions, warnings } = buildLinesFromScript(raw, { startSec });
+
+  if (!lines.length) {
+    $("scriptNotice").innerHTML = banner("bad", warnings.map(esc).join("<br>"));
+    return;
+  }
+
+  const replacing = draft.lines.length > 0;
+  draft.lines = lines;
+  saveDraft();
+  renderLines();
+  runValidate();
+  renderQuizBox();
+
+  $("scriptNotice").innerHTML =
+    banner("ok", `<b>Đã tạo ${lines.length} câu thoại.</b>`
+      + (replacing ? " Các câu cũ đã bị thay." : "")
+      + ` Cụm trọng tâm máy nhận ra: ${lines.flatMap((l) => l.keywords).length}.`)
+    + warnings.map((w) => banner("warn", esc(w))).join("")
+    + banner("warn",
+      "<b>Nếu đây là lời thoại chép từ phim của người khác:</b> điền cơ sở sử dụng vào ô "
+      + "<i>Ghi chú quyền sử dụng tư liệu</i> bên phải trước khi dạy, và đừng đưa bài này "
+      + "vào gói thu phí. An toàn nhất là viết lời thoại mới cho cùng tình huống.")
+    + (vocabSuggestions.length ? `
+      <div class="card" style="margin-top:10px;box-shadow:none"><div class="card__body">
+        <div class="hint" style="margin-bottom:8px">Gợi ý từ mới — bấm để thêm vào bộ thẻ, rồi điền nghĩa tiếng Việt:</div>
+        <div class="btn-row">${vocabSuggestions.map((v) =>
+          `<button class="btn btn--sm" data-addvocab="${esc(v.term)}">+ ${esc(v.term)}</button>`).join("")}</div>
+      </div></div>` : "");
+
+  $("scriptNotice").querySelectorAll("[data-addvocab]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const term = b.dataset.addvocab;
+      if (draft.vocab.some((v) => v.term === term)) { b.disabled = true; return; }
+      draft.vocab.push({
+        id: `v${draft.vocab.length + 1}`, term, ipa: "", pos: "", meaningVi: "", example: "",
+        lineIds: draft.lines.filter((l) => new RegExp(`\\b${term}\\b`, "i").test(l.text)).map((l) => l.id),
+      });
+      saveDraft(); renderVocab(); runValidate(); renderQuizBox();
+      b.disabled = true;
+      b.textContent = `✓ ${term}`;
+    }));
+}
+
+/* ------------------------- xem trước bài tập ------------------------------ */
+
+/**
+ * Cho người soạn thấy bài của mình sinh được bao nhiêu câu hỏi, theo từng dạng.
+ * Đây là cách nhanh nhất để họ biết còn thiếu gì: thiếu nghĩa tiếng Việt thì
+ * dạng "chọn câu đúng nghĩa" bằng 0, thiếu cụm trọng tâm thì "điền cụm" bằng 0.
+ */
+function renderQuizBox() {
+  const cov = exerciseCoverage(normalizeLesson(draft));
+  const total = Object.values(cov).reduce((a, b) => a + b, 0);
+  const advice = [];
+  if (!cov.match) advice.push("Thêm từ mới có nghĩa tiếng Việt để có bài nối từ.");
+  if (!cov.gap) advice.push("Đánh dấu cụm trọng tâm ở từng câu để có bài điền chỗ trống.");
+  if (!cov.translate) advice.push("Điền nghĩa tiếng Việt cho các câu để có bài chọn câu đúng nghĩa.");
+  if (!cov.listen) advice.push("Cần ít nhất 3 câu thoại để có bài nghe.");
+
+  $("quizBox").innerHTML = total
+    ? `<p class="hint" style="margin:0 0 9px">Bài này tự sinh được <b>${total}</b> câu hỏi, học viên không phải soạn thêm gì.</p>
+       <table class="tbl">${Object.entries(cov).map(([k, n]) =>
+         `<tr><td>${esc(EXERCISE_LABELS[k])}</td><td class="num" style="text-align:right">${n ? n + " câu" : "<span class=\"hint\">chưa có</span>"}</td></tr>`).join("")}</table>
+       ${advice.length ? `<ul class="advice" style="margin-top:10px">${advice.map((a) => `<li><span aria-hidden="true">→</span><span>${esc(a)}</span></li>`).join("")}</ul>` : ""}`
+    : `<p class="hint" style="margin:0">Chưa sinh được câu hỏi nào. ${esc(advice[0] || "Thêm câu thoại trước.")}</p>`;
 }
 
 /* -------------------------------- kiểm tra ------------------------------- */
@@ -328,6 +417,16 @@ function wireButtons() {
   $("btnAddLine").addEventListener("click", () => addLine());
   $("btnAddVocab").addEventListener("click", addVocab);
   $("btnValidate").addEventListener("click", runValidate);
+  $("btnBuildScript").addEventListener("click", buildFromScript);
+  $("btnScriptNow").addEventListener("click", () => {
+    if (!player) { alert("Nạp video trước để lấy được giây hiện tại."); return; }
+    $("inScriptStart").value = player.getTime().toFixed(1);
+  });
+  $("btnTryQuiz").addEventListener("click", () => {
+    const lesson = normalizeLesson(draft);
+    if (!lesson.lines.length) { alert("Chưa có câu thoại nào."); return; }
+    openExercises({ lesson });
+  });
   $("btnExport").addEventListener("click", exportJson);
   $("btnPreview").addEventListener("click", previewLesson);
   $("btnSortLines").addEventListener("click", () => {
