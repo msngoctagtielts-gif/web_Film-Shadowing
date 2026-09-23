@@ -27,12 +27,12 @@
       "lessons": [
         {
           "id": "youtube-khung-mau",
-          "title": "Khung mẫu — bài học từ video YouTube",
-          "episodeLabel": "Khung mẫu",
+          "title": "Bài thử — video thật, kịch bản bạn tự điền",
+          "episodeLabel": "Bài thử",
           "level": "chưa đặt",
           "lineCount": 3,
           "sourceKind": "youtube",
-          "summary": "Chưa sẵn sàng dạy. Mở Soạn bài để bắt mốc thời gian và điền lời thoại thật."
+          "summary": "Mở ra là thấy video chạy và bảng thoại bên cạnh. Bấm từng dòng để xem nó tua tới đúng đoạn."
         }
       ]
     }

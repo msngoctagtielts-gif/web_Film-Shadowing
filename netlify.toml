@@ -1,0 +1,19 @@
+# Website tĩnh, không có bước build trên máy chủ.
+# Thư mục public/ dựng bằng: node tools/build-site.mjs
+
+[build]
+  publish = "public"
+  command = "node tools/build-site.mjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Cho phép dùng micro (thu âm) trên chính trang này.
+    Permissions-Policy = "microphone=(self)"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=60"

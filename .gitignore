@@ -8,3 +8,6 @@ node_modules/
 # Ảnh chụp kiểm thử — tạo lại bằng: node tests/e2e/smoke.mjs
 tests/e2e/screenshots/
 dist/
+
+# Thư mục triển khai — dựng bằng: node tools/build-site.mjs
+public/

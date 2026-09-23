@@ -283,6 +283,45 @@ function createTtsPlayer({ mount, source, lesson }) {
 }
 
 /**
+ * Player dự phòng khi nguồn video không nạp được (mất mạng, chủ kênh tắt nhúng,
+ * đường dẫn tệp sai).
+ *
+ * Trả về đúng bộ điều khiển như các player thật nhưng không phát gì. Nhờ vậy
+ * phần còn lại của buổi học — bảng kịch bản, thu âm, chấm điểm, tiến độ — vẫn
+ * chạy bình thường. Học viên chỉ mất bản mẫu, không mất cả bài.
+ *
+ * @param {HTMLElement} mount @param {string} reason
+ */
+export function createNullPlayer(mount, reason) {
+  const ctl = baseController();
+  mount.innerHTML = "";
+  const box = document.createElement("div");
+  box.className = "tts-stage";
+  box.innerHTML = `<div>
+    <div class="tts-stage__speaker">Không phát được video</div>
+    <div class="tts-stage__idle" style="max-width:40ch">${String(reason || "")
+      .replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]))}</div>
+  </div>`;
+  mount.appendChild(box);
+
+  let t = 0;
+  return Object.assign(ctl, {
+    kind: "null",
+    failed: true,
+    reason,
+    capabilities: { rate: false, seek: false, duration: false },
+    get duration() { return 0; },
+    getTime: () => t,
+    play() {}, pause() {}, stop() {},
+    seek(sec) { t = sec; ctl.emit("time", sec); },
+    setRate() {}, mute() {}, unmute() {},
+    playSegment(start) { t = start; ctl.emit("time", start); ctl.emit("state", "paused"); },
+    clearSegment() { ctl.segment = null; },
+    destroy() { mount.innerHTML = ""; },
+  });
+}
+
+/**
  * Tạo player theo khai báo nguồn của bài học.
  * @param {{mount:HTMLElement, lesson:object}} args
  */

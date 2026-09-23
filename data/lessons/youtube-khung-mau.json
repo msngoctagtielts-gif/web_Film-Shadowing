@@ -1,61 +1,96 @@
 {
   "id": "youtube-khung-mau",
   "courseId": "chuoi-phim-cua-ban",
-  "title": "Khung mẫu — bài học từ video YouTube của bạn",
+  "title": "Bài thử — video thật, kịch bản bạn tự điền",
   "level": "chưa đặt",
   "episodeLabel": "Khung mẫu",
-  "summary": "Bản khung để tạo bài học từ một video trong chuỗi phim của trung tâm. Mở Soạn bài để bắt mốc thời gian và điền lời thoại.",
-  "notes": "CHƯA SẴN SÀNG DẠY. Ba câu dưới đây là câu hướng dẫn, không phải lời thoại của video. Hãy mở trang Soạn bài, vừa xem video vừa bấm bắt mốc thời gian, tự gõ lời thoại mà bạn nghe được, rồi xuất tệp JSON thay cho tệp này. Xem docs/06-tu-lieu-va-ban-quyen.md trước khi đưa video có bản quyền vào khoá học thu phí.",
+  "summary": "Mở ra là thấy video chạy và bảng thoại bên cạnh. Bấm từng dòng để xem nó tua tới đúng đoạn. Lời thoại là chỗ trống chờ bạn điền bằng trang Soạn bài.",
+  "notes": "ĐÂY LÀ BÀI THỬ CƠ CHẾ, CHƯA PHẢI BÀI DẠY. Ba dòng dưới là hướng dẫn, không phải lời thoại của video. Mục đích để bạn thấy: bấm một dòng thì video tua tới đúng giây đó và lặp lại đoạn đó. Muốn thành bài dạy thật, mở trang Soạn bài, vừa xem vừa bấm I và O để bắt mốc, tự gõ lời thoại nghe được, rồi bấm \"Thử học bài này\". Đọc docs/06-tu-lieu-va-ban-quyen.md trước khi dùng video có bản quyền cho lớp thu phí.",
   "source": {
     "type": "youtube",
     "videoId": "g6PXXpA5zTk",
     "voiceLang": "en-US",
-    "rightsNote": "CHƯA XÁC ĐỊNH — điền cơ sở sử dụng trước khi phát cho học viên. Video được phát qua trình phát nhúng chính thức của YouTube, không tải về, không cắt ghép, không phủ lớp lên khung phát."
+    "rightsNote": "BÀI THỬ CƠ CHẾ, KHÔNG PHẢI BÀI DẠY. Video phát qua trình phát nhúng chính thức của YouTube: không tải về, không cắt ghép, không phủ lớp lên khung phát. Trước khi đưa vào khoá học thu phí phải điền cơ sở sử dụng cụ thể ở đây."
   },
-  "scoring": { "profile": "standard", "passMark": 70 },
+  "scoring": {
+    "profile": "standard",
+    "passMark": 70
+  },
   "roles": [
-    { "id": "A", "label": "Nhân vật A" },
-    { "id": "B", "label": "Nhân vật B" }
+    {
+      "id": "A",
+      "label": "Nhân vật A"
+    },
+    {
+      "id": "B",
+      "label": "Nhân vật B"
+    }
   ],
   "vocab": [
     {
-      "id": "v1", "term": "example", "ipa": "/ɪɡˈzɑːmpəl/", "pos": "n",
-      "meaningVi": "ví dụ (đây là thẻ mẫu — hãy thay bằng từ thật của cảnh)",
-      "definitionEn": "a thing that shows what something is like",
-      "example": "This card is only an example.",
-      "image": { "kind": "builtin", "key": "idea" },
-      "lineIds": ["l1"]
+      "id": "v1",
+      "term": "jump to",
+      "ipa": "/dʒʌmp tuː/",
+      "pos": "phr v",
+      "meaningVi": "nhảy tới, tua tới (đây là thẻ mẫu — thay bằng từ thật của cảnh)",
+      "definitionEn": "move straight to a different point",
+      "example": "Click a line to jump to that moment.",
+      "image": {
+        "kind": "builtin",
+        "key": "film"
+      },
+      "lineIds": [
+        "l1"
+      ]
     }
   ],
   "keyphrases": [
-    { "id": "k1", "text": "for example", "meaningVi": "ví dụ như", "note": "Thẻ mẫu — thay bằng cụm trọng tâm thật của cảnh." }
+    {
+      "id": "k1",
+      "text": "jump to",
+      "meaningVi": "nhảy tới, tua tới",
+      "note": "Thẻ mẫu — thay bằng cụm trọng tâm thật của cảnh."
+    }
   ],
   "lines": [
     {
-      "id": "l1", "speaker": "A", "start": 2.0, "end": 5.0,
-      "text": "This line is a placeholder, for example only.",
-      "textVi": "Câu này là câu giữ chỗ, chỉ để làm ví dụ.",
-      "keywords": ["for example"],
-      "vocabIds": ["v1"],
-      "notes": "Thay câu này bằng lời thoại bạn nghe được từ video.",
+      "id": "l1",
+      "speaker": "A",
+      "start": 12.0,
+      "end": 18.0,
+      "text": "Click this line and watch the video jump to twelve seconds.",
+      "textVi": "Bấm dòng này rồi xem video nhảy tới giây thứ 12.",
+      "keywords": [
+        "jump to"
+      ],
+      "vocabIds": [
+        "v1"
+      ],
+      "notes": "Bấm nút Lặp rồi bấm lại dòng này — đoạn 12–18 giây sẽ chạy đi chạy lại.",
       "difficulty": 1
     },
     {
-      "id": "l2", "speaker": "B", "start": 5.2, "end": 8.0,
-      "text": "Open the studio page to set the real timings.",
-      "textVi": "Mở trang Soạn bài để đặt mốc thời gian thật.",
+      "id": "l2",
+      "speaker": "B",
+      "start": 45.0,
+      "end": 52.0,
+      "text": "This one jumps to forty five seconds instead.",
+      "textVi": "Dòng này thì nhảy tới giây thứ 45.",
       "keywords": [],
       "vocabIds": [],
-      "notes": "",
+      "notes": "Thử đổi tốc độ sang 0.75x rồi bấm lại — video chạy chậm lại.",
       "difficulty": 1
     },
     {
-      "id": "l3", "speaker": "A", "start": 8.2, "end": 11.0,
-      "text": "Then export the file and replace this one.",
-      "textVi": "Sau đó xuất tệp và thay cho tệp này.",
+      "id": "l3",
+      "speaker": "A",
+      "start": 90.0,
+      "end": 98.0,
+      "text": "Open the studio page to replace these with real lines.",
+      "textVi": "Mở trang Soạn bài để thay ba dòng này bằng lời thoại thật.",
       "keywords": [],
       "vocabIds": [],
-      "notes": "",
+      "notes": "Ở Soạn bài: dán link video, bấm I lúc câu bắt đầu, bấm O lúc câu kết thúc.",
       "difficulty": 1
     }
   ]

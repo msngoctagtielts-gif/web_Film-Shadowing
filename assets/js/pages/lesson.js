@@ -12,7 +12,7 @@
  */
 
 import { loadLesson } from "../core/lesson-loader.js";
-import { createPlayer, speakOnce } from "../core/player.js";
+import { createPlayer, createNullPlayer, speakOnce } from "../core/player.js";
 import { createRecorder, recorderSupport, drawVu, effectiveDuration } from "../core/recorder.js";
 import { asrSupport, listen, pickBestAlternative } from "../core/asr.js";
 import { gradeAttempt } from "../core/scoring.js";
@@ -40,6 +40,7 @@ const state = {
   asrEnabled: null,       // null = chưa hỏi
   recording: false,
   lastTake: null,
+  playerWarning: null,   // cảnh báo khi nguồn video hỏng
   vuRaf: null,
   autoStop: null,
 };
@@ -113,7 +114,17 @@ function renderHeader(issues) {
 /* --------------------------------- trình phát ---------------------------- */
 
 async function setupPlayer() {
-  state.player = await createPlayer({ mount: $("playerMount"), lesson: state.lesson });
+  try {
+    state.player = await createPlayer({ mount: $("playerMount"), lesson: state.lesson });
+  } catch (err) {
+    // Video hỏng thì buổi học vẫn phải học được: thay bằng player rỗng rồi đi tiếp.
+    console.error("Không nạp được nguồn video:", err);
+    state.player = createNullPlayer($("playerMount"), err.message || String(err));
+    state.playerWarning = banner("warn",
+      `<b>Không phát được video của bài này.</b> ${esc(err.message || "")}
+       <br>Thường là do mạng chặn YouTube, hoặc chủ kênh đã tắt cho phép nhúng.
+       Bạn vẫn xem được kịch bản, thu âm và chấm điểm bình thường — chỉ không nghe được bản mẫu.`);
+  }
   state.player.setRate(state.rate);
 
   state.player.on("time", (t) => {
@@ -244,30 +255,32 @@ function stepHint() {
 /* --------------------------------- thu âm -------------------------------- */
 
 function renderAsrNotice() {
+  // Giữ lại cảnh báo về video (nếu có) — nó quan trọng hơn thông báo chấm điểm.
+  const keep = state.playerWarning || "";
   const sup = asrSupport();
   if (!sup.available) {
-    $("asrNotice").innerHTML = banner("warn",
+    $("asrNotice").innerHTML = keep + banner("warn",
       `<b>Trình duyệt này không chấm điểm tự động được.</b> ${esc(sup.note)}
        Dùng Chrome hoặc Edge để có điểm. Bạn vẫn thu và nghe lại được ở đây.`);
     state.asrEnabled = false;
     return;
   }
   if (state.asrEnabled === true) {
-    $("asrNotice").innerHTML = banner("ok",
+    $("asrNotice").innerHTML = keep + banner("ok",
       `Chấm điểm tự động: <b>đang bật</b>.
        <button class="btn btn--sm btn--ghost" id="btnAsrOff">Tắt</button>`);
     $("btnAsrOff")?.addEventListener("click", () => { setAsr(false); });
     return;
   }
   if (state.asrEnabled === false) {
-    $("asrNotice").innerHTML = banner("info",
+    $("asrNotice").innerHTML = keep + banner("info",
       `Chấm điểm tự động đang tắt — bạn tự nghe lại và tự đánh giá.
        <button class="btn btn--sm btn--ghost" id="btnAsrOn">Bật chấm điểm</button>`);
     $("btnAsrOn")?.addEventListener("click", () => { setAsr(true); });
     return;
   }
   // chưa hỏi lần nào: xin phép rõ ràng trước khi gửi giọng đi
-  $("asrNotice").innerHTML = banner("warn",
+  $("asrNotice").innerHTML = keep + banner("warn",
     `<b>Trước khi bật chấm điểm tự động.</b> Để chuyển giọng của bạn thành chữ,
      trình duyệt gửi đoạn thu tới dịch vụ nhận dạng của nhà cung cấp trình duyệt
      (Google với Chrome, Apple với Safari). Bản thu vẫn nằm trên máy bạn, không
