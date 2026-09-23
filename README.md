@@ -103,6 +103,7 @@ Hướng an toàn nhất là trung tâm **tự quay** chuỗi phim ngắn. Đọ
 | [07 — Kiểm thử và duyệt](docs/07-kiem-thu-va-duyet.md) | Ba tầng kiểm thử, danh mục kiểm tay, ba cổng duyệt bài, hiệu chuẩn máy chấm |
 | [08 — Ra thị trường](docs/08-ra-thi-truong.md) | Thứ tự mở bán, thông điệp từng nhóm, chi phí vận hành, ngưỡng dừng |
 | [09 — Lộ trình và chỉ số](docs/09-lo-trinh-va-chi-so.md) | Ba giai đoạn, chỉ số theo dõi, nợ kỹ thuật |
+| [10 — Triển khai website](docs/10-trien-khai.md) | Dựng bản xuất bản, đưa lên Netlify, địa chỉ mạng cần mở, danh mục kiểm tra sau khi lên |
 
 ## Việc tiếp theo
 
