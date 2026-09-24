@@ -66,6 +66,13 @@ console.log("\n\x1b[1mMàn học\x1b[0m");
 pageErrors.length = 0;
 await page.goto(`${BASE}/lesson.html?lesson=demo-doan-thoai-ga-tau`, { waitUntil: "networkidle" });
 
+await check("danh mục có đủ chuỗi phim nhiều tập", async () => {
+  const res = await page.request.get(`${BASE}/data/courses.json`);
+  const cat = await res.json();
+  const eps = cat.courses.flatMap((c) => c.lessons).filter((l) => /^Tập \d/.test(l.episodeLabel || ""));
+  assert(eps.length >= 3, `mong đợi >= 3 tập, thấy ${eps.length}`);
+});
+
 await check("bài học nạp được, hiện tiêu đề", async () => {
   await page.waitForSelector("#lessonRoot:not([hidden])", { timeout: 8000 });
   const t = await page.locator("#lsTitle").textContent();
@@ -159,6 +166,80 @@ await check("đổi vòng luyện sang Kiểm tra thì ẩn được chữ", asy
 await check("không có lỗi JavaScript trong cả màn học", () => {
   const real = pageErrors.filter((e) => !/favicon|net::ERR_/.test(e));
   assert(real.length === 0, real.join(" | "));
+});
+
+await check("phụ đề nằm DƯỚI khung phát, không phủ lên", async () => {
+  assert(await page.locator("#captionBar").isVisible(), "không thấy thanh phụ đề");
+  const cap = await page.locator("#captionBar").boundingBox();
+  const pl = await page.locator(".player-box__frame").boundingBox();
+  assert(cap.y >= pl.y + pl.height - 2, `phụ đề chồng lên khung phát (y ${cap.y} vs ${pl.y + pl.height})`);
+});
+
+await check("phụ đề tách đúng từng từ của câu", async () => {
+  const n = await page.locator("#capLine .cw").count();
+  assert(n >= 5, `mong đợi >= 5 từ, thấy ${n}`);
+  const kw = await page.locator('#capLine .cw[data-kw="true"]').count();
+  assert(kw > 0, "không đánh dấu cụm trọng tâm trong phụ đề");
+});
+
+await check("có chỗ chỉnh cho chữ chạy TRƯỚC tiếng", async () => {
+  const v = await page.inputValue("#selLead");
+  assert(Number(v) > 0, `mặc định phải chạy trước tiếng, đang là ${v}`);
+  const opts = await page.locator("#selLead option").count();
+  assert(opts >= 3, "quá ít mức để chọn");
+});
+
+await check("màn chuẩn bị hiện TRƯỚC khi thu, có sẵn câu để đọc thầm", async () => {
+  await page.selectOption("#selPrep", "5");
+  await page.locator('[data-step="dub"]').click();
+  await page.locator(".script-line").first().click();
+  await page.waitForTimeout(400);
+  await page.locator("#btnRec").click();
+  await page.waitForSelector("#prepBox:not([hidden])", { timeout: 4000 });
+  const txt = await page.locator("#prepText").textContent();
+  assert(txt.trim().length > 5, "màn chuẩn bị không hiện câu thoại");
+  const label = await page.locator(".prep__label").textContent();
+  assert(/chưa thu/i.test(label), "không nói rõ là chưa thu");
+});
+
+await check("màn chuẩn bị luôn có đường lùi, không dồn học viên", async () => {
+  for (const id of ["#btnPrepGo", "#btnPrepMore", "#btnPrepCancel"]) {
+    assert(await page.locator(id).isVisible(), `thiếu nút ${id}`);
+  }
+  await page.locator("#btnPrepCancel").click();
+  await page.waitForTimeout(300);
+  assert(await page.locator("#prepBox").isHidden(), "bấm huỷ mà màn chuẩn bị không đóng");
+  assert(!(await page.locator("#btnRec").isDisabled()), "huỷ xong nút thu vẫn khoá");
+});
+await page.screenshot({ path: `${OUT}/13-chuan-bi-va-phu-de.png`, fullPage: true });
+
+await check("chế độ nhẹ nhàng bật sẵn", async () => {
+  assert(await page.locator("#chkGentle").isChecked(), "chế độ nhẹ nhàng phải bật sẵn");
+});
+
+await check("ô nghe lại bản thu ẩn cho tới khi thực sự có bản thu", async () => {
+  // Lỗi từng có: .stack{display:grid} đè lên [hidden]{display:none} nên ô này
+  // hiện sẵn từ lúc chưa thu, học viên tưởng đã thu rồi.
+  await page.locator('[data-step="dub"]').click();
+  await page.locator(".script-line").nth(2).click();
+  await page.waitForTimeout(400);
+  assert(await page.locator("#playbackBox").isHidden(), "ô nghe lại hiện khi chưa thu gì");
+});
+
+await check("thu xong thì hiện bản thu để nghe lại", async () => {
+  await page.selectOption("#selPrep", "0");
+  await page.locator("#btnRec").click();
+  await page.waitForTimeout(1500);
+  await page.locator("#btnRec").click();
+  await page.waitForSelector("#playbackBox:not([hidden])", { timeout: 8000 });
+  const src = await page.locator("#myAudio").getAttribute("src");
+  assert(src && src.startsWith("blob:"), "không có bản thu để nghe lại");
+});
+
+await check("không chấm tự động được thì cho tự đánh giá, không bỏ mặc", async () => {
+  await page.waitForSelector("[data-self]", { timeout: 6000 });
+  const n = await page.locator("[data-self]").count();
+  assert(n >= 3, `mong đợi >= 3 mức tự đánh giá, thấy ${n}`);
 });
 
 await check("mở được bài tập sinh từ chính kịch bản", async () => {

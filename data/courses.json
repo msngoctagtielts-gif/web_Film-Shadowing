@@ -7,7 +7,7 @@
     {
       "id": "khoi-dong",
       "title": "Khởi động — lồng tiếng lần đầu",
-      "description": "Kịch bản gốc của trung tâm, giọng đọc máy. Học viên làm quen bốn vòng luyện trước khi vào phim thật.",
+      "description": "Chuỗi phim ngắn do trung tâm tự viết, đọc bằng giọng máy. Có cốt truyện nối tập nên học viên muốn học tiếp.",
       "lessons": [
         {
           "id": "demo-doan-thoai-ga-tau",
@@ -17,6 +17,24 @@
           "lineCount": 12,
           "sourceKind": "tts",
           "summary": "Hoãn tàu, hỏi đường, được cho đi cùng xe. Luyện xin lỗi và hỏi thông tin."
+        },
+        {
+          "id": "tap-02-tren-xe-anh-trai",
+          "title": "Tập 2 — Trên xe anh trai",
+          "episodeLabel": "Tập 2",
+          "level": "A2–B1",
+          "lineCount": 12,
+          "sourceKind": "tts",
+          "summary": "Anh trai Mai tới đón. Giới thiệu bản thân, nói chuyện xã giao, chỉ đường."
+        },
+        {
+          "id": "tap-03-quan-ca-phe-sang",
+          "title": "Tập 3 — Quán cà phê sáng hôm sau",
+          "episodeLabel": "Tập 3",
+          "level": "A2–B1",
+          "lineCount": 12,
+          "sourceKind": "tts",
+          "summary": "Hẹn gặp, xin lỗi vì trễ, gọi đồ và xin số liên lạc."
         }
       ]
     },

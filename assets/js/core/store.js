@@ -15,7 +15,12 @@ function blank() {
   return {
     version: 1,
     profile: { name: "", level: "standard", createdAt: new Date().toISOString() },
-    settings: { asrEnabled: null, rate: 1, hideText: false, showVi: true, voiceLang: "en-US" },
+    settings: {
+      asrEnabled: null, rate: 1, hideText: false, showVi: true, voiceLang: "en-US",
+      // Nhịp học — đặt sao cho học viên không bị dồn: có thời gian chuẩn bị,
+      // chữ chạy trước tiếng, và luyện thì chưa chấm điểm.
+      leadSec: 0.4, prepMode: "auto", gentle: true, captionOn: true,
+    },
     lessons: {},        // lessonId -> { lines: {lineId: {best, attempts:[]}}, vocab: {...}, startedAt, completedAt }
     streak: { count: 0, lastDay: null, days: [] },
     totals: { attempts: 0, recordedSec: 0 },

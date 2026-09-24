@@ -44,6 +44,15 @@
       <div class="stack">
         <div>
           <div class="player-box"><div class="player-box__frame" id="playerMount"></div></div>
+          <div class="caption" id="captionBar" hidden>
+            <div class="caption__meta">
+              <span class="caption__speaker" id="capSpeaker"></span>
+              <span class="caption__hint" id="capHint"></span>
+            </div>
+            <div class="caption__line" id="capLine"></div>
+            <div class="caption__track"><i id="capProgress"></i></div>
+          </div>
+
           <div class="transport">
             <button class="btn btn--sm btn--primary" id="btnPlayLine" title="Cách phím: Space">▶ Nghe câu</button>
             <button class="btn btn--sm" id="btnPrev" title="Cách phím: ←">⏮</button>
@@ -54,6 +63,7 @@
               <button data-rate="0.9">0.9x</button>
               <button data-rate="1" aria-pressed="true">1x</button>
             </span>
+            <button class="btn btn--sm" id="btnCaption" aria-pressed="true" title="Phụ đề chạy theo nhịp">💬 Phụ đề</button>
             <span class="transport__spacer"></span>
             <span class="hint" id="lsClock">0:00</span>
           </div>
@@ -81,6 +91,19 @@
                 <div class="hint" id="curSpeaker">Chưa chọn câu</div>
                 <div id="curText" style="font-size:1.02rem">Bấm một câu ở bảng kịch bản bên phải để bắt đầu.</div>
                 <div class="hint" id="curVi"></div>
+              </div>
+            </div>
+
+            <div class="prep" id="prepBox" hidden>
+              <div class="prep__ring" id="prepRing"><span id="prepNum">3</span></div>
+              <div class="prep__body">
+                <div class="prep__label">Đọc thầm câu này trước đã — chưa thu đâu</div>
+                <div class="prep__text" id="prepText"></div>
+                <div class="btn-row" style="margin-top:8px">
+                  <button class="btn btn--sm btn--gold" id="btnPrepGo">Tôi sẵn sàng, thu ngay</button>
+                  <button class="btn btn--sm btn--ghost" id="btnPrepMore">+3 giây nữa</button>
+                  <button class="btn btn--sm btn--ghost" id="btnPrepCancel">Thôi, để sau</button>
+                </div>
               </div>
             </div>
 
@@ -136,6 +159,42 @@
             <h3 style="font-size:.92rem;margin:0">Cụm trọng tâm của câu này</h3>
           </div>
           <div class="card__body" id="cueBox" style="padding:14px"></div>
+        </div>
+
+        <div class="card">
+          <div class="card__head" style="padding:11px 14px">
+            <h3 style="font-size:.92rem;margin:0">Nhịp học của bạn</h3>
+          </div>
+          <div class="card__body stack stack--sm" style="padding:14px">
+            <label class="row" style="margin:0;gap:8px;font-weight:500;font-size:.85rem">
+              <input type="checkbox" id="chkGentle" checked style="width:auto">
+              Chế độ nhẹ nhàng — luyện thì không hiện điểm số
+            </label>
+            <p class="hint" style="margin:0">Điểm chỉ hiện ở vòng Kiểm tra. Lúc đang luyện, bạn chỉ thấy từ nào chưa ra và một lời nhắc.</p>
+
+            <div class="field" style="margin:0">
+              <label for="selPrep">Thời gian chuẩn bị trước khi thu</label>
+              <select id="selPrep">
+                <option value="auto">Tự động theo độ dài câu</option>
+                <option value="0">Không cần, thu ngay</option>
+                <option value="3">3 giây</option>
+                <option value="5">5 giây</option>
+                <option value="8">8 giây</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin:0">
+              <label for="selLead">Chữ chạy trước tiếng</label>
+              <select id="selLead">
+                <option value="0">Đúng nhịp</option>
+                <option value="0.4" selected>Sớm một chút (0,4 giây)</option>
+                <option value="0.8">Sớm rõ (0,8 giây)</option>
+                <option value="1.2">Sớm nhiều (1,2 giây)</option>
+              </select>
+              <p class="hint" style="margin:4px 0 0">Chữ sáng trước khi tới lượt nói, để bạn kịp nhìn rồi mới phải nói.</p>
+            </div>
+            <div id="rateTip"></div>
+          </div>
         </div>
 
         <div class="card">

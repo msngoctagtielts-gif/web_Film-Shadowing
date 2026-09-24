@@ -1,7 +1,7 @@
 import { describe, it, expect } from "./harness.mjs";
 import {
   alignTokens, verdictOf, scoreAccuracy, scoreCompleteness, scoreKeywords,
-  scorePacing, band, diagnosePair, gradeAttempt, estimateSeconds, PROFILES, SIM_GOOD,
+  scorePacing, band, diagnosePair, gradeAttempt, estimateSeconds, shouldSoftenScore, PROFILES, SIM_GOOD,
 } from "../assets/js/core/scoring.js";
 import { tokenize } from "../assets/js/core/text.js";
 
@@ -267,5 +267,19 @@ describe("Ước lượng thời lượng câu", () => {
   });
   it("câu rất ngắn vẫn có thời lượng tối thiểu", () => {
     expect(estimateSeconds("Hi")).toBeGreaterThanOrEqual(0.8);
+  });
+});
+
+describe("Chế độ nhẹ nhàng — khi nào giấu điểm", () => {
+  it("đang luyện thì giấu điểm", () => {
+    ["listen", "chorus", "dub"].forEach((s) =>
+      expect(shouldSoftenScore(true, s)).toBeTruthy());
+  });
+  it("vòng Kiểm tra thì luôn hiện điểm", () => {
+    expect(shouldSoftenScore(true, "test")).toBeFalsy();
+  });
+  it("tắt chế độ nhẹ nhàng thì hiện điểm ở mọi vòng", () => {
+    ["listen", "chorus", "dub", "test"].forEach((s) =>
+      expect(shouldSoftenScore(false, s)).toBeFalsy());
   });
 });

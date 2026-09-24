@@ -1,0 +1,335 @@
+{
+  "id": "tap-03-quan-ca-phe-sang",
+  "courseId": "khoi-dong",
+  "title": "Tập 3 — Quán cà phê sáng hôm sau",
+  "level": "A2–B1",
+  "episodeLabel": "Tập 3",
+  "summary": "Sam nhắn Mai đi cà phê để cảm ơn. Luyện hẹn gặp, xin lỗi vì tới muộn, gọi đồ và xin số liên lạc.",
+  "notes": "Kịch bản gốc do Ms.Ngọc Elite English viết riêng, nối tiếp Tập 2. Hai vai cân nhau, hợp cho lớp học cặp đôi.",
+  "source": {
+    "type": "tts",
+    "voiceLang": "en-US"
+  },
+  "scoring": {
+    "profile": "starter",
+    "passMark": 70
+  },
+  "roles": [
+    {
+      "id": "MAI",
+      "label": "Mai"
+    },
+    {
+      "id": "SAM",
+      "label": "Sam"
+    }
+  ],
+  "vocab": [
+    {
+      "id": "v1",
+      "term": "run late",
+      "ipa": "/rʌn leɪt/",
+      "pos": "phr v",
+      "meaningVi": "bị trễ giờ",
+      "definitionEn": "be later than planned",
+      "example": "Sorry, I am running late.",
+      "image": {
+        "kind": "builtin",
+        "key": "clock"
+      },
+      "lineIds": [
+        "l2"
+      ]
+    },
+    {
+      "id": "v2",
+      "term": "the usual",
+      "ipa": "/ðə ˈjuːʒuəl/",
+      "pos": "n",
+      "meaningVi": "món quen (thứ tôi vẫn gọi)",
+      "definitionEn": "the thing you always order",
+      "example": "I will have the usual, please.",
+      "image": {
+        "kind": "builtin",
+        "key": "coffee"
+      },
+      "lineIds": [
+        "l5"
+      ]
+    },
+    {
+      "id": "v3",
+      "term": "owe someone",
+      "ipa": "/əʊ ˈsʌmwʌn/",
+      "pos": "v",
+      "meaningVi": "nợ ai điều gì",
+      "definitionEn": "need to give something back to someone",
+      "example": "I owe you a coffee.",
+      "image": {
+        "kind": "builtin",
+        "key": "money"
+      },
+      "lineIds": [
+        "l7"
+      ]
+    },
+    {
+      "id": "v4",
+      "term": "show around",
+      "ipa": "/ʃəʊ əˈraʊnd/",
+      "pos": "phr v",
+      "meaningVi": "dẫn ai đi tham quan",
+      "definitionEn": "take someone to see a place",
+      "example": "I can show you around on Sunday.",
+      "image": {
+        "kind": "builtin",
+        "key": "map"
+      },
+      "lineIds": [
+        "l9"
+      ]
+    },
+    {
+      "id": "v5",
+      "term": "free",
+      "ipa": "/friː/",
+      "pos": "adj",
+      "meaningVi": "rảnh (không bận)",
+      "definitionEn": "not busy, having no plans",
+      "example": "Are you free on Sunday?",
+      "image": {
+        "kind": "builtin",
+        "key": "clock"
+      },
+      "lineIds": [
+        "l10"
+      ]
+    },
+    {
+      "id": "v6",
+      "term": "text me",
+      "ipa": "/tekst miː/",
+      "pos": "phr",
+      "meaningVi": "nhắn tin cho tôi",
+      "definitionEn": "send me a message on the phone",
+      "example": "Text me when you get there.",
+      "image": {
+        "kind": "builtin",
+        "key": "phone"
+      },
+      "lineIds": [
+        "l12"
+      ]
+    }
+  ],
+  "keyphrases": [
+    {
+      "id": "k1",
+      "text": "running late",
+      "meaningVi": "đang bị trễ",
+      "note": "Người bản xứ nói “I am running late”, không nói “I am late” khi vẫn đang trên đường."
+    },
+    {
+      "id": "k2",
+      "text": "the usual",
+      "meaningVi": "món quen",
+      "note": "Dùng khi bạn là khách quen. Nói gọn và tự tin, đừng kéo dài."
+    },
+    {
+      "id": "k3b",
+      "text": "you owe me",
+      "meaningVi": "bạn nợ tôi",
+      "note": "Đảo vai so với “I owe you”. Ai nợ ai phụ thuộc vào từ đứng trước — sai chỗ này là sai nghĩa hẳn."
+    },
+    {
+      "id": "k3",
+      "text": "I owe you",
+      "meaningVi": "tôi nợ bạn",
+      "note": "“owe” đọc là /əʊ/, chữ w không đọc."
+    },
+    {
+      "id": "k4",
+      "text": "show you around",
+      "meaningVi": "dẫn bạn đi chơi",
+      "note": "Tân ngữ nằm giữa: show YOU around."
+    },
+    {
+      "id": "k5",
+      "text": "text me",
+      "meaningVi": "nhắn tin cho tôi",
+      "note": "Âm cuối /kst/ là cụm ba phụ âm — đọc rõ cả ba."
+    }
+  ],
+  "lines": [
+    {
+      "id": "l1",
+      "speaker": "SAM",
+      "start": 0.0,
+      "end": 2.6,
+      "text": "You found the place.",
+      "textVi": "Chị tìm được quán rồi.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "Câu kể, giọng xuống ở cuối — không phải câu hỏi.",
+      "difficulty": 1
+    },
+    {
+      "id": "l2",
+      "speaker": "MAI",
+      "start": 2.8,
+      "end": 6.2,
+      "text": "Sorry, I was running late again.",
+      "textVi": "Xin lỗi, tôi lại bị trễ nữa.",
+      "keywords": [
+        "running late"
+      ],
+      "vocabIds": [
+        "v1"
+      ],
+      "notes": "Nhấn ở “LATE”. “running” nuốt nhẹ chữ g cuối.",
+      "difficulty": 2
+    },
+    {
+      "id": "l3",
+      "speaker": "SAM",
+      "start": 6.4,
+      "end": 9.2,
+      "text": "You are five minutes early, actually.",
+      "textVi": "Thật ra chị tới sớm năm phút.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "“actually” ở cuối câu, giọng nhẹ — đây là câu trêu.",
+      "difficulty": 2
+    },
+    {
+      "id": "l4",
+      "speaker": "MAI",
+      "start": 9.4,
+      "end": 11.8,
+      "text": "That never happens.",
+      "textVi": "Chuyện đó chưa từng xảy ra.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "Ba từ, ngắn gọn. Nhấn ở “NEV”.",
+      "difficulty": 1
+    },
+    {
+      "id": "l5",
+      "speaker": "MAI",
+      "start": 12.0,
+      "end": 15.0,
+      "text": "I will have the usual, please.",
+      "textVi": "Cho tôi món quen nhé.",
+      "keywords": [
+        "the usual"
+      ],
+      "vocabIds": [
+        "v2"
+      ],
+      "notes": "Câu gọi đồ. “I will” rút thành “I'll”, một âm tiết.",
+      "difficulty": 2
+    },
+    {
+      "id": "l6",
+      "speaker": "SAM",
+      "start": 15.2,
+      "end": 18.2,
+      "text": "So you come here every morning?",
+      "textVi": "Vậy sáng nào chị cũng tới đây à?",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "Giọng lên ở cuối để thành câu hỏi.",
+      "difficulty": 1
+    },
+    {
+      "id": "l7",
+      "speaker": "MAI",
+      "start": 18.4,
+      "end": 21.6,
+      "text": "Most mornings. And you owe me a coffee.",
+      "textVi": "Hầu hết các buổi sáng. Và anh nợ tôi một ly cà phê.",
+      "keywords": [
+        "you owe me"
+      ],
+      "vocabIds": [
+        "v3"
+      ],
+      "notes": "Cụm này đảo ngược so với câu sau: ở đây là \"you owe me\", câu sau là \"I owe you\". Luyện cả hai để không nói ngược.",
+      "difficulty": 3
+    },
+    {
+      "id": "l8",
+      "speaker": "SAM",
+      "start": 21.8,
+      "end": 25.0,
+      "text": "I owe you much more than a coffee.",
+      "textVi": "Tôi nợ chị nhiều hơn một ly cà phê nhiều.",
+      "keywords": [
+        "I owe you"
+      ],
+      "vocabIds": [
+        "v3"
+      ],
+      "notes": "Giọng ấm, chậm hơn câu trước một nhịp.",
+      "difficulty": 2
+    },
+    {
+      "id": "l9",
+      "speaker": "MAI",
+      "start": 25.2,
+      "end": 28.6,
+      "text": "Then let me show you around today.",
+      "textVi": "Vậy để tôi dẫn anh đi chơi hôm nay.",
+      "keywords": [
+        "show you around"
+      ],
+      "vocabIds": [
+        "v4"
+      ],
+      "notes": "“show you” nối thành /ʃəʊjə/ khi nói nhanh.",
+      "difficulty": 3
+    },
+    {
+      "id": "l10",
+      "speaker": "SAM",
+      "start": 28.8,
+      "end": 31.6,
+      "text": "Are you free the whole day?",
+      "textVi": "Chị rảnh cả ngày à?",
+      "keywords": [],
+      "vocabIds": [
+        "v5"
+      ],
+      "notes": "“Are you” nói nhanh gần như /əjə/.",
+      "difficulty": 1
+    },
+    {
+      "id": "l11",
+      "speaker": "MAI",
+      "start": 31.8,
+      "end": 35.2,
+      "text": "Until six. Then I have to go to work.",
+      "textVi": "Tới sáu giờ. Sau đó tôi phải đi làm.",
+      "keywords": [],
+      "vocabIds": [],
+      "notes": "“have to” đọc là /hæftə/, không phải /hæv tuː/.",
+      "difficulty": 2
+    },
+    {
+      "id": "l12",
+      "speaker": "SAM",
+      "start": 35.4,
+      "end": 38.6,
+      "text": "Perfect. Text me when you are ready.",
+      "textVi": "Tuyệt. Nhắn tin cho tôi khi chị sẵn sàng.",
+      "keywords": [
+        "text me"
+      ],
+      "vocabIds": [
+        "v6"
+      ],
+      "notes": "Cụm phụ âm /kst/ trong “text” — đọc rõ, đừng thành “tex”.",
+      "difficulty": 3
+    }
+  ]
+}

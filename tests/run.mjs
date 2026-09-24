@@ -17,6 +17,7 @@ await import("./lesson-data.test.mjs");
 await import("./analytics.test.mjs");
 await import("./exercises.test.mjs");
 await import("./suggest.test.mjs");
+await import("./karaoke.test.mjs");
 
 const ok = await runAll();
 process.exit(ok ? 0 : 1);

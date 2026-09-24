@@ -15,13 +15,14 @@ import { loadLesson } from "../core/lesson-loader.js";
 import { createPlayer, createNullPlayer, speakOnce } from "../core/player.js";
 import { createRecorder, recorderSupport, drawVu, effectiveDuration } from "../core/recorder.js";
 import { asrSupport, listen, pickBestAlternative } from "../core/asr.js";
-import { gradeAttempt } from "../core/scoring.js";
+import { gradeAttempt, shouldSoftenScore } from "../core/scoring.js";
 import { store } from "../core/store.js";
 import { createScriptPanel, lineAtTime } from "../ui/script-panel.js";
 import { openVocabPreview } from "../ui/vocab-preview.js";
 import { openExercises } from "../ui/exercise-panel.js";
+import { buildCaption, activeIndex, suggestRate, suggestLeadIn } from "../core/karaoke.js";
 import { illustrationFor } from "../ui/illustrations.js";
-import { appBar, wireTheme, banner, cueHtml, scoreCardHtml, esc, fmtTime } from "../ui/components.js";
+import { appBar, wireTheme, banner, cueHtml, scoreCardHtml, wordMapHtml, esc, fmtTime } from "../ui/components.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -42,6 +43,12 @@ const state = {
   recording: false,
   lastTake: null,
   playerWarning: null,   // cảnh báo khi nguồn video hỏng
+  leadSec: 0.4,          // chữ chạy trước tiếng bao nhiêu giây
+  prepMode: "auto",      // thời gian chuẩn bị trước khi thu
+  gentle: true,          // chế độ nhẹ nhàng: luyện thì không hiện điểm
+  captionOn: true,
+  prepTimer: null,
+  prepResolve: null,
   vuRaf: null,
   autoStop: null,
 };
@@ -65,6 +72,10 @@ async function boot() {
     state.hideText = Boolean(s.hideText);
     state.showVi = s.showVi !== false;
     state.asrEnabled = s.asrEnabled;
+    state.leadSec = s.leadSec ?? 0.4;
+    state.prepMode = s.prepMode ?? "auto";
+    state.gentle = s.gentle !== false;
+    state.captionOn = s.captionOn !== false;
     store.markLessonStarted(lesson.id);
 
     $("loadState").hidden = true;
@@ -130,6 +141,9 @@ async function setupPlayer() {
 
   state.player.on("time", (t) => {
     $("lsClock").textContent = fmtTime(t);
+    if (caption.mode === "player" && caption.line) {
+      tickCaption(t - caption.line.start);
+    }
     const l = lineAtTime(state.lesson, t);
     if (l && (!state.line || l.id !== state.line.id) && !state.recording) {
       // video tự chạy sang câu khác: đồng bộ bảng kịch bản, không ép đổi câu đang luyện
@@ -140,6 +154,77 @@ async function setupPlayer() {
   state.player.on("segmentend", () => {
     if (state.step === "listen" || state.step === "chorus") return;
   });
+}
+
+/* ------------------------------- phụ đề chạy ----------------------------- */
+
+/**
+ * Phụ đề chạy theo nhịp, chữ sáng dần từng từ.
+ *
+ * Hai nguồn nhịp:
+ *   "player" — bám theo đồng hồ của trình phát, dùng khi có tiếng mẫu.
+ *   "timer"  — tự chạy bằng đồng hồ riêng, dùng ở vòng Lồng tiếng khi tiếng gốc
+ *              đã tắt. Lúc đó chính phụ đề là nhịp để học viên bám vào.
+ *
+ * Chữ luôn sáng TRƯỚC tiếng một khoảng (state.leadSec). Nếu sáng đúng lúc tiếng
+ * phát ra thì học viên luôn chậm nửa nhịp và luôn thấy mình kém — đó là kiểu áp
+ * lực bài học này cố tình tránh.
+ */
+const caption = { line: null, words: [], mode: "idle", raf: null, t0: 0 };
+
+function captionShell(line) {
+  const { words } = buildCaption(line.text, line.durationSec);
+  caption.line = line;
+  caption.words = words;
+
+  const kws = (line.keywords || []).map((k) => k.toLowerCase());
+  const inKeyword = (w) => kws.some((k) => k.split(/\s+/).includes(w.toLowerCase().replace(/[^a-z'’-]/gi, "")));
+
+  $("capSpeaker").textContent = line.speaker || "";
+  $("capLine").innerHTML = words
+    .map((w) => `<span class="cw" data-i="${w.index}" data-kw="${inKeyword(w.text)}">${esc(w.text)}</span>`)
+    .join("");
+  $("capProgress").style.width = "0%";
+  $("captionBar").hidden = !state.captionOn;
+  $("captionBar").classList.toggle("caption--hidden-text", state.hideText && state.step === "test");
+  paintCaption(-1, 0);
+}
+
+function paintCaption(idx, pct) {
+  const spans = $("capLine").children;
+  for (let i = 0; i < spans.length; i++) {
+    spans[i].dataset.state = i < idx ? "done" : i === idx ? "now" : "next";
+  }
+  $("capProgress").style.width = `${Math.max(0, Math.min(100, pct * 100))}%`;
+}
+
+/** Cập nhật phụ đề theo giây tính từ đầu câu (đơn vị: thời gian của chính câu). */
+function tickCaption(relSec) {
+  if (!caption.words.length) return;
+  const lead = state.leadSec * state.rate;   // đổi từ giây thật sang giây của câu
+  paintCaption(activeIndex(caption.words, relSec, lead), relSec / caption.line.durationSec);
+}
+
+/** Cho phụ đề tự chạy — dùng khi không có tiếng mẫu để bám. */
+function runCaptionTimer(line) {
+  stopCaptionTimer();
+  captionShell(line);
+  caption.mode = "timer";
+  caption.t0 = performance.now();
+  const step = () => {
+    if (caption.mode !== "timer") return;
+    const elapsed = (performance.now() - caption.t0) / 1000;
+    const rel = elapsed * state.rate;
+    tickCaption(rel);
+    if (rel < line.durationSec + 0.4) caption.raf = requestAnimationFrame(step);
+  };
+  step();
+}
+
+function stopCaptionTimer() {
+  if (caption.raf) cancelAnimationFrame(caption.raf);
+  caption.raf = null;
+  if (caption.mode === "timer") caption.mode = "idle";
 }
 
 /* --------------------------------- kịch bản ------------------------------ */
@@ -216,6 +301,8 @@ function selectLine(line, { play = true } = {}) {
   $("curVi").textContent = state.showVi ? (line.textVi || "") : "";
 
   renderCue(line);
+  captionShell(line);
+  renderRateTip(line);
   $("btnRec").disabled = false;
   $("recStatus").textContent = stepHint();
   $("playbackBox").hidden = true;
@@ -241,6 +328,9 @@ function renderCue(line) {
 function playCurrentLine() {
   if (!state.line) return;
   muteModel(false);
+  stopCaptionTimer();
+  captionShell(state.line);
+  caption.mode = "player";
   state.player.playSegment(state.line.start, state.line.end, { loop: state.loop, rate: state.rate });
 }
 
@@ -308,8 +398,75 @@ async function ensureRecorder() {
   return state.recorder;
 }
 
+/**
+ * Gợi ý tốc độ cho câu đang chọn. CHỈ GỢI Ý — không tự đổi tốc độ của học viên.
+ * Ép tốc độ cũng là một kiểu áp lực.
+ */
+function renderRateTip(line) {
+  const tip = suggestRate(line.text, line.durationSec, state.lesson.scoring.profile);
+  $("rateTip").innerHTML = tip.rate === 1 ? "" : banner("warn",
+    `${esc(tip.reason)} <button class="btn btn--sm btn--ghost" id="btnUseRate">Đổi sang ${tip.rate}x</button>`);
+  $("btnUseRate")?.addEventListener("click", () => {
+    document.querySelector(`[data-rate="${tip.rate}"]`)?.click();
+  });
+}
+
+/** Số giây chuẩn bị cho câu này, theo lựa chọn của học viên. */
+function prepSecondsFor(line) {
+  if (state.prepMode === "auto") return suggestLeadIn(line.text);
+  return Number(state.prepMode) || 0;
+}
+
+/**
+ * Màn chuẩn bị trước khi thu.
+ *
+ * Học viên thấy trọn câu và có thời gian đọc thầm TRƯỚC khi máy bắt đầu nghe.
+ * Không có tiếng bíp, không có "3! 2! 1!" — vòng đếm chạy êm, và lúc nào cũng
+ * có nút bỏ qua lẫn nút xin thêm giờ. Bị dồn vào thế phải nói ngay là lý do
+ * phổ biến nhất khiến người lớn ngại mở miệng.
+ *
+ * @returns {Promise<boolean>} true nếu nên thu tiếp, false nếu học viên huỷ
+ */
+function runPrep(line) {
+  const seconds = prepSecondsFor(line);
+  if (seconds <= 0) return Promise.resolve(true);
+
+  $("prepText").textContent = line.text;
+  $("prepBox").hidden = false;
+  $("btnRec").disabled = true;
+
+  return new Promise((resolve) => {
+    let left = seconds;
+    const total = seconds;
+    const paint = () => {
+      $("prepNum").textContent = Math.ceil(left);
+      $("prepRing").style.setProperty("--p", `${((total - left) / total) * 100}%`);
+    };
+    paint();
+
+    const finish = (ok) => {
+      clearInterval(state.prepTimer);
+      state.prepTimer = null;
+      state.prepResolve = null;
+      $("prepBox").hidden = true;
+      $("btnRec").disabled = false;
+      resolve(ok);
+    };
+    state.prepResolve = finish;
+
+    state.prepTimer = setInterval(() => {
+      left -= 0.1;
+      if (left <= 0) { finish(true); return; }
+      paint();
+    }, 100);
+  });
+}
+
 async function startRecording() {
   if (!state.line) return;
+  // Vòng Nghe không thu — chỉ nghe. Không ép học viên nói khi chưa muốn.
+  const ok = await runPrep(state.line);
+  if (!ok) return;
   let rec;
   try {
     rec = await ensureRecorder();
@@ -351,6 +508,11 @@ async function startRecording() {
     }
   }
 
+  // Vòng có tiếng mẫu thì phụ đề bám theo trình phát; vòng lồng tiếng thì phụ
+  // đề tự chạy — nó chính là nhịp để học viên bám vào.
+  if (state.step === "chorus") { captionShell(state.line); caption.mode = "player"; }
+  else runCaptionTimer(state.line);
+
   drawVuLoop();
 
   // tự dừng sau khi hết câu + khoảng dư, tránh học viên quên bấm dừng
@@ -374,6 +536,8 @@ function drawVuLoop() {
 }
 
 function cancelRecording() {
+  if (state.prepResolve) state.prepResolve(false);
+  stopCaptionTimer();
   if (!state.recording) return;
   clearTimeout(state.autoStop);
   cancelAnimationFrame(state.vuRaf);
@@ -395,6 +559,7 @@ async function stopRecording() {
   if (!state.recording) return;
   clearTimeout(state.autoStop);
   cancelAnimationFrame(state.vuRaf);
+  stopCaptionTimer();
   state.recording = false;
   $("recStatus").textContent = "Đang chấm…";
   muteModel(false);
@@ -441,7 +606,9 @@ async function stopRecording() {
     refText: state.line.text,
     hypText: picked.transcript,
     keywords: state.line.keywords,
-    refSec: state.line.durationSec,
+    // Học viên luyện ở 0.75x thì bản mẫu họ đang bám theo dài hơn thật. Lấy
+    // thời lượng gốc để chấm nhịp sẽ phạt oan người đang cố tập chậm cho chắc.
+    refSec: state.line.durationSec / state.rate,
     userSec,
     longPauses: m.longPauses,
     speechRatio: m.speechRatio,
@@ -459,18 +626,49 @@ async function stopRecording() {
   refreshProgress();
 }
 
+/**
+ * Hiện kết quả một lượt thu.
+ *
+ * CHẾ ĐỘ NHẸ NHÀNG (bật sẵn). Ở ba vòng luyện, học viên KHÔNG thấy điểm số —
+ * chỉ thấy từ nào chưa ra và một lời nhắc. Điểm chỉ hiện ở vòng Kiểm tra.
+ *
+ * Lý do: một con số chấm sau mỗi lần mở miệng biến việc luyện tập thành việc bị
+ * đánh giá. Người lớn gặp điểm thấp vài lần là ngừng thu, và ngừng thu thì
+ * không còn học nữa. Thông tin sửa lỗi vẫn đủ — chỉ bỏ cái nhãn phán xét.
+ * Ai muốn xem vẫn có nút mở ra.
+ */
 function renderScore(result, notes, asrResult) {
   $("scoreBox").hidden = false;
   const extra = [];
   if (asrResult?.error === "network") extra.push("Mất mạng giữa lúc nhận dạng — điểm có thể thấp hơn thực tế, thu lại khi mạng ổn.");
   if (asrResult?.error === "not-allowed") extra.push("Trình duyệt chặn nhận dạng giọng nói. Kiểm tra quyền micro của trang.");
-  $("scoreBody").innerHTML =
-    [...notes, ...extra].map((n) => banner("warn", esc(n))).join("") +
-    scoreCardHtml(result, { refText: state.line.text }) +
-    `<div class="btn-row" style="margin-top:14px">
+
+  const softened = shouldSoftenScore(state.gentle, state.step);
+  const head = [...notes, ...extra].map((n) => banner("warn", esc(n))).join("");
+  const tail = `<div class="btn-row" style="margin-top:14px">
       <button class="btn btn--sm" id="btnAgain">↻ Thu lại câu này</button>
       <button class="btn btn--sm btn--primary" id="btnGoNext">Câu tiếp →</button>
     </div>`;
+
+  if (softened) {
+    const good = result.words.filter((w) => w.verdict === "good").length;
+    const tip = result.advice[0]?.text || "";
+    $("scoreBody").innerHTML = head + `
+      <p style="margin:0 0 10px">Máy nghe ra <b>${good}/${result.stats.refWords}</b> từ trong câu.</p>
+      ${wordMapHtml(result.words)}
+      ${tip ? `<ul class="advice" style="margin-top:12px"><li><span aria-hidden="true">→</span><span>${esc(tip)}</span></li></ul>` : ""}
+      <p class="hint" style="margin-top:10px">Đang luyện nên chưa tính điểm. Điểm chỉ lấy ở vòng <b>Kiểm tra</b>.
+        <button class="btn btn--sm btn--ghost" id="btnShowScore">Tôi vẫn muốn xem điểm</button></p>
+      ${tail}`;
+    $("btnShowScore")?.addEventListener("click", () => {
+      $("scoreBody").innerHTML = head + scoreCardHtml(result, { refText: state.line.text }) + tail;
+      $("btnAgain")?.addEventListener("click", () => startRecording());
+      $("btnGoNext")?.addEventListener("click", gotoNext);
+    });
+  } else {
+    $("scoreBody").innerHTML = head + scoreCardHtml(result, { refText: state.line.text }) + tail;
+  }
+
   $("btnAgain")?.addEventListener("click", () => startRecording());
   $("btnGoNext")?.addEventListener("click", gotoNext);
 }
@@ -609,6 +807,44 @@ function setupControls() {
     playCurrentLine();
     const wait = (state.line.durationSec / state.rate) * 1000 + 400;
     setTimeout(() => { $("myAudio").currentTime = 0; $("myAudio").play(); }, wait);
+  });
+
+  $("btnCaption").addEventListener("click", () => {
+    state.captionOn = !state.captionOn;
+    $("btnCaption").setAttribute("aria-pressed", String(state.captionOn));
+    $("captionBar").hidden = !state.captionOn;
+    store.setSettings({ captionOn: state.captionOn });
+  });
+
+  $("chkGentle").checked = state.gentle;
+  $("chkGentle").addEventListener("change", (e) => {
+    state.gentle = e.target.checked;
+    store.setSettings({ gentle: state.gentle });
+  });
+
+  $("selPrep").value = String(state.prepMode);
+  $("selPrep").addEventListener("change", (e) => {
+    state.prepMode = e.target.value;
+    store.setSettings({ prepMode: state.prepMode });
+  });
+
+  $("selLead").value = String(state.leadSec);
+  $("selLead").addEventListener("change", (e) => {
+    state.leadSec = Number(e.target.value);
+    store.setSettings({ leadSec: state.leadSec });
+  });
+
+  $("btnPrepGo").addEventListener("click", () => state.prepResolve?.(true));
+  $("btnPrepCancel").addEventListener("click", () => state.prepResolve?.(false));
+  $("btnPrepMore").addEventListener("click", () => {
+    // Xin thêm giờ: dừng đồng hồ cũ rồi chạy lại từ đầu với 3 giây nữa.
+    state.prepResolve?.(false);
+    const line = state.line;
+    setTimeout(() => {
+      const keep = state.prepMode;
+      state.prepMode = String(prepSecondsFor(line) + 3);
+      runPrep(line).then((ok) => { state.prepMode = keep; if (ok) startRecording(); });
+    }, 30);
   });
 
   $("chkHide").checked = state.hideText;

@@ -417,6 +417,21 @@ export function gradeAttempt(input) {
 }
 
 /**
+ * Có nên giấu điểm số ở lượt thu này không.
+ *
+ * Ở ba vòng luyện, một con số chấm sau mỗi lần mở miệng biến việc tập thành
+ * việc bị đánh giá. Người lớn gặp điểm thấp vài lần là ngừng thu, mà ngừng thu
+ * thì không còn học nữa. Thông tin sửa lỗi vẫn hiện đủ — chỉ bỏ cái nhãn phán
+ * xét. Vòng Kiểm tra thì hiện điểm, vì đó mới là lúc đo.
+ *
+ * @param {boolean} gentle Học viên có bật chế độ nhẹ nhàng không
+ * @param {string} step Vòng đang luyện: listen | chorus | dub | test
+ */
+export function shouldSoftenScore(gentle, step) {
+  return Boolean(gentle) && step !== "test";
+}
+
+/**
  * Ước lượng thời lượng đọc một câu ở tốc độ tự nhiên — dùng cho chế độ TTS
  * và để gợi ý nhịp khi kịch bản chưa có mốc thời gian thật.
  * @param {string} text

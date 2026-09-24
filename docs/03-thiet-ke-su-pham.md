@@ -100,7 +100,59 @@ Yêu cầu "học để áp dụng thực tế, cá nhân hoá" được đáp �
 
 **Tầng 4 (cần giáo viên) — Đổi lời thoại theo nghề.** Studio cho phép giữ nguyên nhịp và cấu trúc của cảnh nhưng thay danh từ theo nghề của học viên. Đây là việc của giáo viên, không tự động hoá được, và chính là thứ biện minh cho gói kèm cặp 1-1.
 
-## 6. Một buổi luyện tại nhà nên kéo dài bao lâu
+## 6. Chống áp lực — vì sao thiết kế nhịp lại quan trọng
+
+Người lớn học tiếng Anh thường không bỏ vì khó, mà vì **ngại**. Một sản phẩm bắt
+họ mở miệng ngay khi chưa sẵn sàng, rồi chấm điểm mỗi lần họ thử, sẽ mất đúng
+nhóm khách trả tiền cao nhất. Bốn cơ chế dưới đây có mặt để chặn điều đó.
+
+### 6.1 Chữ chạy TRƯỚC tiếng
+
+Phụ đề sáng dần từng từ như karaoke, nhưng sáng **sớm hơn tiếng** một khoảng
+(mặc định 0,4 giây, chỉnh được tới 1,2 giây).
+
+Nếu chữ sáng đúng lúc tiếng phát ra thì học viên luôn chậm nửa nhịp — họ đọc
+được từ đó xong thì tiếng đã đi qua. Lần nào cũng vậy, và họ kết luận mình kém.
+Cho chữ chạy trước là đổi cảm giác "tôi không theo kịp" thành "tôi theo được".
+
+Cài đặt ở `core/karaoke.js`, hàm `activeIndex(words, relSec, leadSec)`.
+
+### 6.2 Có thời gian chuẩn bị trước khi máy bắt đầu nghe
+
+Bấm thu là màn **chuẩn bị** hiện ra: trọn câu nằm đó, vòng đếm chạy êm, không
+tiếng bíp, không "3! 2! 1!". Thời gian mặc định tính theo độ dài câu.
+
+Ba nút luôn có mặt: *Tôi sẵn sàng*, *+3 giây nữa*, *Thôi, để sau*. Học viên
+không bao giờ bị dồn vào thế phải nói ngay.
+
+### 6.3 Luyện thì không chấm điểm
+
+Ở ba vòng đầu, học viên **không thấy con số**. Họ thấy từ nào máy nghe chưa ra,
+và một lời nhắc. Điểm chỉ hiện ở vòng **Kiểm tra**.
+
+Một con số chấm sau mỗi lần mở miệng biến việc tập thành việc bị đánh giá.
+Thông tin để sửa vẫn còn nguyên — chỉ bỏ cái nhãn phán xét. Ai muốn xem vẫn có
+nút mở ra. Xem `shouldSoftenScore` trong `core/scoring.js`.
+
+### 6.4 Tập chậm thì không bị phạt
+
+Học viên luyện ở 0,75x đang bám theo một bản mẫu dài hơn bản gốc. Nếu vẫn lấy
+thời lượng gốc để chấm nhịp thì người cố tập chậm cho chắc lại bị trừ điểm vì
+"nói quá chậm" — phạt đúng vào hành vi mình muốn khuyến khích.
+
+Đã sửa: thời lượng tham chiếu chia cho tốc độ đang phát.
+
+### 6.5 Những thứ cố ý KHÔNG làm
+
+| Không làm | Vì sao |
+|---|---|
+| Đếm ngược có tiếng bíp | Tạo phản xạ căng thẳng trước khi nói |
+| Giới hạn số lần thu lại | Thu lại nhiều là dấu hiệu chăm, không phải dấu hiệu kém |
+| Trừ điểm khi đứt chuỗi ngày | Đứt chuỗi rồi bị phạt thì học viên bỏ luôn |
+| Xếp hạng lớp theo điểm | Học viên yếu bỏ cuộc ngay tuần đầu |
+| Hiện đồng hồ đếm giờ khi đang thu | Nhìn đồng hồ là quên mất câu |
+
+## 7. Một buổi luyện tại nhà nên kéo dài bao lâu
 
 **15 phút, không hơn.** Cụ thể:
 
